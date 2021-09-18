@@ -38,19 +38,23 @@ Partial Class FormClientes
         Me.btnAdicionar = New System.Windows.Forms.Button()
         Me.btnEditar = New System.Windows.Forms.Button()
         Me.btnExcluir = New System.Windows.Forms.Button()
-        Me.btnCancelar = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.codigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nome = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.identificador = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.tbPesquisar = New System.Windows.Forms.TextBox()
         Me.btnPesquisar = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.tbCodigo = New System.Windows.Forms.TextBox()
+        Me.btnSalvar = New System.Windows.Forms.Button()
+        Me.btnCancelar = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbNome
         '
-        Me.tbNome.Location = New System.Drawing.Point(12, 28)
+        Me.tbNome.Enabled = False
+        Me.tbNome.Location = New System.Drawing.Point(12, 65)
         Me.tbNome.Name = "tbNome"
         Me.tbNome.Size = New System.Drawing.Size(335, 20)
         Me.tbNome.TabIndex = 0
@@ -58,7 +62,7 @@ Partial Class FormClientes
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(10, 12)
+        Me.Label1.Location = New System.Drawing.Point(10, 49)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(120, 13)
         Me.Label1.TabIndex = 1
@@ -67,7 +71,7 @@ Partial Class FormClientes
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 56)
+        Me.Label2.Location = New System.Drawing.Point(10, 93)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(78, 13)
         Me.Label2.TabIndex = 3
@@ -75,7 +79,8 @@ Partial Class FormClientes
         '
         'tbIdentificador
         '
-        Me.tbIdentificador.Location = New System.Drawing.Point(12, 72)
+        Me.tbIdentificador.Enabled = False
+        Me.tbIdentificador.Location = New System.Drawing.Point(12, 109)
         Me.tbIdentificador.Name = "tbIdentificador"
         Me.tbIdentificador.Size = New System.Drawing.Size(335, 20)
         Me.tbIdentificador.TabIndex = 2
@@ -83,7 +88,7 @@ Partial Class FormClientes
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(10, 101)
+        Me.Label3.Location = New System.Drawing.Point(10, 138)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(56, 13)
         Me.Label3.TabIndex = 5
@@ -91,7 +96,8 @@ Partial Class FormClientes
         '
         'tbEndereco
         '
-        Me.tbEndereco.Location = New System.Drawing.Point(12, 117)
+        Me.tbEndereco.Enabled = False
+        Me.tbEndereco.Location = New System.Drawing.Point(12, 154)
         Me.tbEndereco.Name = "tbEndereco"
         Me.tbEndereco.Size = New System.Drawing.Size(335, 53)
         Me.tbEndereco.TabIndex = 6
@@ -99,7 +105,8 @@ Partial Class FormClientes
         '
         'mkCelular
         '
-        Me.mkCelular.Location = New System.Drawing.Point(118, 198)
+        Me.mkCelular.Enabled = False
+        Me.mkCelular.Location = New System.Drawing.Point(118, 235)
         Me.mkCelular.Mask = "(99) 0 0000-0000"
         Me.mkCelular.Name = "mkCelular"
         Me.mkCelular.Size = New System.Drawing.Size(100, 20)
@@ -108,7 +115,7 @@ Partial Class FormClientes
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(115, 182)
+        Me.Label4.Location = New System.Drawing.Point(115, 219)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(99, 13)
         Me.Label4.TabIndex = 8
@@ -117,14 +124,15 @@ Partial Class FormClientes
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(62, 177)
+        Me.Label5.Location = New System.Drawing.Point(62, 214)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(0, 13)
         Me.Label5.TabIndex = 9
         '
         'mkTelefone
         '
-        Me.mkTelefone.Location = New System.Drawing.Point(12, 198)
+        Me.mkTelefone.Enabled = False
+        Me.mkTelefone.Location = New System.Drawing.Point(12, 235)
         Me.mkTelefone.Mask = "(99) 0000-0000"
         Me.mkTelefone.Name = "mkTelefone"
         Me.mkTelefone.Size = New System.Drawing.Size(100, 20)
@@ -133,7 +141,7 @@ Partial Class FormClientes
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(9, 182)
+        Me.Label6.Location = New System.Drawing.Point(9, 219)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(49, 13)
         Me.Label6.TabIndex = 11
@@ -141,7 +149,8 @@ Partial Class FormClientes
         '
         'tbEmail
         '
-        Me.tbEmail.Location = New System.Drawing.Point(12, 245)
+        Me.tbEmail.Enabled = False
+        Me.tbEmail.Location = New System.Drawing.Point(12, 282)
         Me.tbEmail.Name = "tbEmail"
         Me.tbEmail.Size = New System.Drawing.Size(335, 20)
         Me.tbEmail.TabIndex = 12
@@ -149,7 +158,7 @@ Partial Class FormClientes
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(9, 229)
+        Me.Label7.Location = New System.Drawing.Point(9, 266)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(38, 13)
         Me.Label7.TabIndex = 13
@@ -157,7 +166,7 @@ Partial Class FormClientes
         '
         'btnAdicionar
         '
-        Me.btnAdicionar.Location = New System.Drawing.Point(21, 271)
+        Me.btnAdicionar.Location = New System.Drawing.Point(17, 337)
         Me.btnAdicionar.Name = "btnAdicionar"
         Me.btnAdicionar.Size = New System.Drawing.Size(75, 23)
         Me.btnAdicionar.TabIndex = 16
@@ -166,8 +175,7 @@ Partial Class FormClientes
         '
         'btnEditar
         '
-        Me.btnEditar.Enabled = False
-        Me.btnEditar.Location = New System.Drawing.Point(102, 271)
+        Me.btnEditar.Location = New System.Drawing.Point(98, 337)
         Me.btnEditar.Name = "btnEditar"
         Me.btnEditar.Size = New System.Drawing.Size(75, 23)
         Me.btnEditar.TabIndex = 17
@@ -176,35 +184,30 @@ Partial Class FormClientes
         '
         'btnExcluir
         '
-        Me.btnExcluir.Enabled = False
-        Me.btnExcluir.Location = New System.Drawing.Point(183, 271)
+        Me.btnExcluir.Location = New System.Drawing.Point(179, 337)
         Me.btnExcluir.Name = "btnExcluir"
         Me.btnExcluir.Size = New System.Drawing.Size(75, 23)
         Me.btnExcluir.TabIndex = 18
         Me.btnExcluir.Text = "Excluir"
         Me.btnExcluir.UseVisualStyleBackColor = True
         '
-        'btnCancelar
-        '
-        Me.btnCancelar.Enabled = False
-        Me.btnCancelar.Location = New System.Drawing.Point(264, 271)
-        Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancelar.TabIndex = 19
-        Me.btnCancelar.Text = "Cancelar"
-        Me.btnCancelar.UseVisualStyleBackColor = True
-        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nome, Me.identificador})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.codigo, Me.nome, Me.identificador})
         Me.DataGridView1.Location = New System.Drawing.Point(366, 56)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(446, 322)
+        Me.DataGridView1.Size = New System.Drawing.Size(549, 322)
         Me.DataGridView1.TabIndex = 22
+        '
+        'codigo
+        '
+        Me.codigo.HeaderText = "Código"
+        Me.codigo.Name = "codigo"
+        Me.codigo.ReadOnly = True
         '
         'nome
         '
@@ -220,39 +223,69 @@ Partial Class FormClientes
         Me.identificador.ReadOnly = True
         Me.identificador.Width = 200
         '
-        'Label8
+        'tbPesquisar
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(380, 14)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(68, 13)
-        Me.Label8.TabIndex = 22
-        Me.Label8.Text = "CPF / CNPJ:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(382, 28)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(335, 20)
-        Me.TextBox1.TabIndex = 20
+        Me.tbPesquisar.Location = New System.Drawing.Point(449, 26)
+        Me.tbPesquisar.Name = "tbPesquisar"
+        Me.tbPesquisar.Size = New System.Drawing.Size(335, 20)
+        Me.tbPesquisar.TabIndex = 20
+        Me.tbPesquisar.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'btnPesquisar
         '
-        Me.btnPesquisar.Location = New System.Drawing.Point(723, 26)
+        Me.btnPesquisar.Location = New System.Drawing.Point(790, 24)
         Me.btnPesquisar.Name = "btnPesquisar"
         Me.btnPesquisar.Size = New System.Drawing.Size(75, 23)
         Me.btnPesquisar.TabIndex = 21
         Me.btnPesquisar.Text = "Pesquisar"
         Me.btnPesquisar.UseVisualStyleBackColor = True
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(11, 10)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(43, 13)
+        Me.Label9.TabIndex = 24
+        Me.Label9.Text = "Código:"
+        '
+        'tbCodigo
+        '
+        Me.tbCodigo.Enabled = False
+        Me.tbCodigo.Location = New System.Drawing.Point(13, 26)
+        Me.tbCodigo.Name = "tbCodigo"
+        Me.tbCodigo.Size = New System.Drawing.Size(75, 20)
+        Me.tbCodigo.TabIndex = 23
+        '
+        'btnSalvar
+        '
+        Me.btnSalvar.Location = New System.Drawing.Point(140, 308)
+        Me.btnSalvar.Name = "btnSalvar"
+        Me.btnSalvar.Size = New System.Drawing.Size(75, 23)
+        Me.btnSalvar.TabIndex = 25
+        Me.btnSalvar.Text = "Salvar"
+        Me.btnSalvar.UseVisualStyleBackColor = True
+        '
+        'btnCancelar
+        '
+        Me.btnCancelar.Enabled = False
+        Me.btnCancelar.Location = New System.Drawing.Point(260, 337)
+        Me.btnCancelar.Name = "btnCancelar"
+        Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancelar.TabIndex = 19
+        Me.btnCancelar.Text = "Cancelar"
+        Me.btnCancelar.UseVisualStyleBackColor = True
+        '
         'FormClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(822, 382)
+        Me.ClientSize = New System.Drawing.Size(927, 382)
+        Me.Controls.Add(Me.btnSalvar)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.tbCodigo)
         Me.Controls.Add(Me.btnPesquisar)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.tbPesquisar)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnExcluir)
@@ -298,11 +331,14 @@ Partial Class FormClientes
     Friend WithEvents btnAdicionar As Button
     Friend WithEvents btnEditar As Button
     Friend WithEvents btnExcluir As Button
-    Friend WithEvents btnCancelar As Button
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Label8 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents tbPesquisar As TextBox
     Friend WithEvents btnPesquisar As Button
+    Friend WithEvents Label9 As Label
+    Friend WithEvents tbCodigo As TextBox
+    Friend WithEvents codigo As DataGridViewTextBoxColumn
     Friend WithEvents nome As DataGridViewTextBoxColumn
     Friend WithEvents identificador As DataGridViewTextBoxColumn
+    Friend WithEvents btnSalvar As Button
+    Friend WithEvents btnCancelar As Button
 End Class
