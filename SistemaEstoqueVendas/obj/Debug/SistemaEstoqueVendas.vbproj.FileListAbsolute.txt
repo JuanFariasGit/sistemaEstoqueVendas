@@ -1,0 +1,16 @@
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\SistemaEstoqueVendas.exe.config
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\SistemaEstoqueVendas.exe
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\SistemaEstoqueVendas.pdb
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\SistemaEstoqueVendas.xml
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.vbproj.AssemblyReference.cache
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.Resources.resources
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.vbproj.GenerateResource.cache
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.vbproj.CoreCompileInputs.cache
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.exe
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.xml
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.pdb
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\System.Data.SQLite.dll
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\System.Data.SQLite.xml
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.vbproj.CopyComplete
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.formClientes.resources
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.FormPrincipal.resources
