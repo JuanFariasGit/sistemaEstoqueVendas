@@ -1,14 +1,14 @@
-﻿Public Class FormClientes
+﻿Public Class FormFornecedores
     Private op As String
-    Private Sub FormClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        getClientes()
+    Private Sub FormFornecedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        getFornecedores()
     End Sub
-    Private Sub getClientes()
+    Private Sub getFornecedores()
         DataGridView1.Rows.Clear()
         Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
             Conn.Open()
             Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Clientes"
+                Comm.CommandText = "SELECT * FROM Fornecedores"
                 Using Reader = Comm.ExecuteReader()
                     While Reader.Read()
                         DataGridView1.Rows.Add(Reader.Item("registro").ToString,
@@ -19,13 +19,13 @@
             End Using
         End Using
     End Sub
-    Private Sub searchCliente()
+    Private Sub searchFornecedor()
         Dim searchValue = tbPesquisar.Text.Trim()
         DataGridView1.Rows.Clear()
         Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
             Conn.Open()
             Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Clientes WHERE nome LIKE @searchValue OR identificador LIKE @identificador"
+                Comm.CommandText = "SELECT * FROM Fornecedores WHERE nome LIKE @searchValue OR identificador LIKE @identificador"
                 Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
                 Comm.Parameters.AddWithValue("@identificador", "%" + searchValue + "%")
                 Using Reader = Comm.ExecuteReader()
@@ -38,7 +38,7 @@
             End Using
         End Using
     End Sub
-    Private Sub addCliente()
+    Private Sub addFornecedor()
         If tbNome.Text.Length > 0 And tbIdentificador.Text.Length > 0 Then
             Dim nome = tbNome.Text.Trim
             Dim identificador = tbIdentificador.Text.Trim
@@ -50,7 +50,7 @@
                 Conn.Open()
                 Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
                     Try
-                        Comm.CommandText = "INSERT INTO Clientes VALUES (Null, @nome, @identificador, @endereco, @telefone, @celular, @email)"
+                        Comm.CommandText = "INSERT INTO Fornecedores VALUES (Null, @nome, @identificador, @endereco, @telefone, @celular, @email)"
                         Comm.Parameters.AddWithValue("@nome", nome)
                         Comm.Parameters.AddWithValue("@identificador", identificador)
                         Comm.Parameters.AddWithValue("@endereco", endereco)
@@ -69,12 +69,12 @@
             deactivateFields()
             clearFields()
             activeButtons()
-            getClientes()
+            getFornecedores()
         Else
             MessageBox.Show("Preacha os campos obrigatórios (*)")
         End If
     End Sub
-    Private Sub editCliente()
+    Private Sub editFornecedor()
         If tbNome.Text.Length > 0 And tbIdentificador.Text.Length > 0 Then
             Dim nome = tbNome.Text.Trim
             Dim identificador = tbIdentificador.Text.Trim
@@ -87,7 +87,7 @@
                 Conn.Open()
                 Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
                     Try
-                        Comm.CommandText = "UPDATE Clientes Set nome = @nome, 
+                        Comm.CommandText = "UPDATE Fornecedores Set nome = @nome, 
                                             identificador = @identificador, 
                                             endereco = @endereco, 
                                             telefone = @telefone, 
@@ -112,25 +112,25 @@
             deactivateFields()
             clearFields()
             activeButtons()
-            getClientes()
+            getFornecedores()
         Else
             MessageBox.Show("Preacha os campos obrigatórios (*)")
         End If
     End Sub
-    Private Sub delCliente()
+    Private Sub delFornecedor()
         Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo)
         If dialog = DialogResult.Yes Then
             Dim registro = tbRegistro.Text
             Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
                 Conn.Open()
                 Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Comm.CommandText = "DELETE FROM Clientes WHERE registro = @registro"
+                    Comm.CommandText = "DELETE FROM Fornecedores WHERE registro = @registro"
                     Comm.Parameters.AddWithValue("@registro", registro)
                     Comm.ExecuteNonQuery()
                 End Using
             End Using
             clearFields()
-            getClientes()
+            getFornecedores()
         End If
     End Sub
     Private Sub clearFields()
@@ -176,7 +176,7 @@
             Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
                 Conn.Open()
                 Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Comm.CommandText = "SELECT * FROM Clientes WHERE registro = @registro"
+                    Comm.CommandText = "SELECT * FROM Fornecedores WHERE registro = @registro"
                     Comm.Parameters.AddWithValue("@registro", registro)
                     Using Reader = Comm.ExecuteReader()
                         While Reader.Read()
@@ -199,13 +199,13 @@
         clearFields()
         deactivateFields()
         activeButtons()
-        getClientes()
+        getFornecedores()
     End Sub
     Private Sub btnExcluir_Click(sender As Object, e As EventArgs) Handles btnExcluir.Click
         If tbRegistro.Text.Length > 0 Then
-            delCliente()
+            delFornecedor()
         Else
-            MessageBox.Show("Selecione um cliente para excluir")
+            MessageBox.Show("Selecione um Fornecedor para excluir")
         End If
     End Sub
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
@@ -216,7 +216,7 @@
             activeFields()
             deactivateButtons()
         Else
-            MessageBox.Show("Selecione um cliente para editar")
+            MessageBox.Show("Selecione um Fornecedor para editar")
         End If
     End Sub
     Private Sub btnAdicionar_Click(sender As Object, e As EventArgs) Handles btnAdicionar.Click
@@ -229,13 +229,12 @@
     End Sub
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
         If op.Equals("add") Then
-            addCliente()
+            addFornecedor()
         ElseIf op.Equals("edit") Then
-            editCliente()
+            editFornecedor()
         End If
     End Sub
-
     Private Sub btnPesquisar_Click(sender As Object, e As EventArgs) Handles btnPesquisar.Click
-        searchCliente()
+        searchFornecedor()
     End Sub
 End Class

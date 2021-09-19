@@ -39,16 +39,16 @@ Partial Class FormClientes
         Me.btnEditar = New System.Windows.Forms.Button()
         Me.btnExcluir = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.codigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nome = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.identificador = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbPesquisar = New System.Windows.Forms.TextBox()
         Me.btnPesquisar = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.tbCodigo = New System.Windows.Forms.TextBox()
+        Me.tbRegistro = New System.Windows.Forms.TextBox()
         Me.btnSalvar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.registro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nome = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.identificador = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -197,32 +197,12 @@ Partial Class FormClientes
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.codigo, Me.nome, Me.identificador})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.registro, Me.nome, Me.identificador})
         Me.DataGridView1.Location = New System.Drawing.Point(366, 56)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(549, 322)
         Me.DataGridView1.TabIndex = 22
-        '
-        'codigo
-        '
-        Me.codigo.HeaderText = "Código"
-        Me.codigo.Name = "codigo"
-        Me.codigo.ReadOnly = True
-        '
-        'nome
-        '
-        Me.nome.HeaderText = "Cliente"
-        Me.nome.Name = "nome"
-        Me.nome.ReadOnly = True
-        Me.nome.Width = 200
-        '
-        'identificador
-        '
-        Me.identificador.HeaderText = "CPF / CNJPJ"
-        Me.identificador.Name = "identificador"
-        Me.identificador.ReadOnly = True
-        Me.identificador.Width = 200
         '
         'tbPesquisar
         '
@@ -246,17 +226,17 @@ Partial Class FormClientes
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(11, 10)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(43, 13)
+        Me.Label9.Size = New System.Drawing.Size(70, 13)
         Me.Label9.TabIndex = 24
-        Me.Label9.Text = "Código:"
+        Me.Label9.Text = "Registro (Nº):"
         '
-        'tbCodigo
+        'tbRegistro
         '
-        Me.tbCodigo.Enabled = False
-        Me.tbCodigo.Location = New System.Drawing.Point(13, 26)
-        Me.tbCodigo.Name = "tbCodigo"
-        Me.tbCodigo.Size = New System.Drawing.Size(75, 20)
-        Me.tbCodigo.TabIndex = 23
+        Me.tbRegistro.Enabled = False
+        Me.tbRegistro.Location = New System.Drawing.Point(13, 26)
+        Me.tbRegistro.Name = "tbRegistro"
+        Me.tbRegistro.Size = New System.Drawing.Size(75, 20)
+        Me.tbRegistro.TabIndex = 23
         '
         'btnSalvar
         '
@@ -287,6 +267,26 @@ Partial Class FormClientes
         Me.Label8.TabIndex = 26
         Me.Label8.Text = "Nome / Razão Social ou CPF / CNPJ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
+        'registro
+        '
+        Me.registro.HeaderText = "Registro (Nº)"
+        Me.registro.Name = "registro"
+        Me.registro.ReadOnly = True
+        '
+        'nome
+        '
+        Me.nome.HeaderText = "Cliente"
+        Me.nome.Name = "nome"
+        Me.nome.ReadOnly = True
+        Me.nome.Width = 200
+        '
+        'identificador
+        '
+        Me.identificador.HeaderText = "CPF / CNJPJ"
+        Me.identificador.Name = "identificador"
+        Me.identificador.ReadOnly = True
+        Me.identificador.Width = 200
+        '
         'FormClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -295,7 +295,7 @@ Partial Class FormClientes
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.btnSalvar)
         Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.tbCodigo)
+        Me.Controls.Add(Me.tbRegistro)
         Me.Controls.Add(Me.btnPesquisar)
         Me.Controls.Add(Me.tbPesquisar)
         Me.Controls.Add(Me.DataGridView1)
@@ -347,11 +347,11 @@ Partial Class FormClientes
     Friend WithEvents tbPesquisar As TextBox
     Friend WithEvents btnPesquisar As Button
     Friend WithEvents Label9 As Label
-    Friend WithEvents tbCodigo As TextBox
-    Friend WithEvents codigo As DataGridViewTextBoxColumn
-    Friend WithEvents nome As DataGridViewTextBoxColumn
-    Friend WithEvents identificador As DataGridViewTextBoxColumn
+    Friend WithEvents tbRegistro As TextBox
     Friend WithEvents btnSalvar As Button
     Friend WithEvents btnCancelar As Button
     Friend WithEvents Label8 As Label
+    Friend WithEvents registro As DataGridViewTextBoxColumn
+    Friend WithEvents nome As DataGridViewTextBoxColumn
+    Friend WithEvents identificador As DataGridViewTextBoxColumn
 End Class

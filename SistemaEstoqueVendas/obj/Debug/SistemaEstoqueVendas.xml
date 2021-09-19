@@ -22,10 +22,5 @@ SistemaEstoqueVendas
   pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
 </summary>
 </member>
-<member name="P:SistemaEstoqueVendas.My.Resources.Resources.Lili">
-<summary>
-  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-</summary>
-</member>
 </members>
 </doc>

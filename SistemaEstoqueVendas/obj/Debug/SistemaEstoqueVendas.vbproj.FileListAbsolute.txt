@@ -14,3 +14,4 @@ C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\
 C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.vbproj.CopyComplete
 C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.formClientes.resources
 C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.FormPrincipal.resources
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.FormFornecedores.resources
