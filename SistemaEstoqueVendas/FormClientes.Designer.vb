@@ -48,6 +48,7 @@ Partial Class FormClientes
         Me.tbCodigo = New System.Windows.Forms.TextBox()
         Me.btnSalvar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
+        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -259,6 +260,7 @@ Partial Class FormClientes
         '
         'btnSalvar
         '
+        Me.btnSalvar.Enabled = False
         Me.btnSalvar.Location = New System.Drawing.Point(140, 308)
         Me.btnSalvar.Name = "btnSalvar"
         Me.btnSalvar.Size = New System.Drawing.Size(75, 23)
@@ -276,11 +278,21 @@ Partial Class FormClientes
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(446, 9)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(185, 13)
+        Me.Label8.TabIndex = 26
+        Me.Label8.Text = "Nome / Razão Social ou CPF / CNPJ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
         'FormClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(927, 382)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.btnSalvar)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.tbCodigo)
@@ -341,4 +353,5 @@ Partial Class FormClientes
     Friend WithEvents identificador As DataGridViewTextBoxColumn
     Friend WithEvents btnSalvar As Button
     Friend WithEvents btnCancelar As Button
+    Friend WithEvents Label8 As Label
 End Class

@@ -63,8 +63,12 @@
                     End Try
                 End Using
             End Using
+            op = ""
+            btnSalvar.Enabled = False
+            btnCancelar.Enabled = False
             deactivateFields()
             clearFields()
+            activeButtons()
             getClientes()
         Else
             MessageBox.Show("Preacha os campos obrigatórios (*)")
@@ -102,8 +106,12 @@
                     End Try
                 End Using
             End Using
+            op = ""
+            btnSalvar.Enabled = False
+            btnCancelar.Enabled = False
             deactivateFields()
             clearFields()
+            activeButtons()
             getClientes()
         Else
             MessageBox.Show("Preacha os campos obrigatórios (*)")
@@ -151,6 +159,16 @@
         mkCelular.Enabled = False
         tbEmail.Enabled = False
     End Sub
+    Private Sub activeButtons()
+        btnAdicionar.Enabled = True
+        btnEditar.Enabled = True
+        btnExcluir.Enabled = True
+    End Sub
+    Private Sub deactivateButtons()
+        btnAdicionar.Enabled = False
+        btnEditar.Enabled = False
+        btnExcluir.Enabled = False
+    End Sub
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         If e.RowIndex <> -1 Then
             Dim selectedRow = DataGridView1.Rows(e.RowIndex)
@@ -177,8 +195,10 @@
     End Sub
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
         btnCancelar.Enabled = False
+        btnSalvar.Enabled = False
         clearFields()
         deactivateFields()
+        activeButtons()
         getClientes()
     End Sub
     Private Sub btnExcluir_Click(sender As Object, e As EventArgs) Handles btnExcluir.Click
@@ -191,16 +211,20 @@
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
         If tbCodigo.Text.Length > 0 Then
             op = "edit"
+            btnSalvar.Enabled = True
             btnCancelar.Enabled = True
             activeFields()
+            deactivateButtons()
         Else
             MessageBox.Show("Selecione um cliente para editar")
         End If
     End Sub
     Private Sub btnAdicionar_Click(sender As Object, e As EventArgs) Handles btnAdicionar.Click
         op = "add"
+        btnSalvar.Enabled = True
         btnCancelar.Enabled = True
         activeFields()
+        deactivateButtons()
         clearFields()
     End Sub
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
@@ -209,8 +233,6 @@
         ElseIf op.Equals("edit") Then
             editCliente()
         End If
-        op = ""
-        btnCancelar.Enabled = False
     End Sub
 
     Private Sub btnPesquisar_Click(sender As Object, e As EventArgs) Handles btnPesquisar.Click
