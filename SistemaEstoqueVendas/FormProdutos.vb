@@ -1,61 +1,59 @@
-﻿Public Class FormClientes
+﻿Public Class FormProdutos
     Private op As String
-    Private Sub FormClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        getClientes()
+    Private Sub FormProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        getProdutos()
     End Sub
-    Private Sub getClientes()
+    Private Sub getProdutos()
         DataGridView1.Rows.Clear()
         Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
             Conn.Open()
             Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Clientes"
+                Comm.CommandText = "SELECT * FROM Produtos"
                 Using Reader = Comm.ExecuteReader()
                     While Reader.Read()
                         DataGridView1.Rows.Add(Reader.Item("registro").ToString,
-                                               Reader.Item("nome").ToString,
-                                               Reader.Item("identificador").ToString)
+                                               Reader.Item("codigo").ToString,
+                                               Reader.Item("produto").ToString)
                     End While
                 End Using
             End Using
         End Using
     End Sub
-    Private Sub searchCliente()
+    Private Sub searchProduto()
         Dim searchValue = tbPesquisar.Text.Trim()
         DataGridView1.Rows.Clear()
         Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
             Conn.Open()
             Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Clientes WHERE nome LIKE @searchValue OR identificador LIKE @searchValue"
+                Comm.CommandText = "SELECT * FROM Produtos WHERE codigo LIKE @searchValue OR produto LIKE @searchValue"
                 Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
                 Using Reader = Comm.ExecuteReader()
                     While Reader.Read()
                         DataGridView1.Rows.Add(Reader.Item("registro").ToString,
-                                               Reader.Item("nome").ToString,
-                                               Reader.Item("identificador").ToString)
+                                               Reader.Item("codigo").ToString,
+                                               Reader.Item("produto").ToString)
                     End While
                 End Using
             End Using
         End Using
     End Sub
-    Private Sub addCliente()
-        If tbNome.Text.Length > 0 And tbIdentificador.Text.Length > 0 Then
-            Dim nome = tbNome.Text.Trim
-            Dim identificador = tbIdentificador.Text.Trim
-            Dim endereco = tbEndereco.Text.Trim
-            Dim telefone = mkTelefone.Text.Trim
-            Dim celular = mkCelular.Text.Trim
-            Dim email = tbEmail.Text.Trim
+    Private Sub addProduto()
+        If tbCodigo.Text.Length > 0 And tbProduto.Text.Length > 0 And tbEstoqueMinimo.Text.Length > 0 And tbEstoqueMaximo.Text.Length > 0 Then
+            Dim codigo = tbCodigo.Text.Trim
+            Dim produto = tbProduto.Text.Trim
+            Dim unidadeMedida = tbUnidadeMedida.Text.Trim
+            Dim estoqueMinimo = tbEstoqueMinimo.Text.Trim
+            Dim estoqueMaximo = tbEstoqueMaximo.Text.Trim
             Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
                 Conn.Open()
                 Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
                     Try
-                        Comm.CommandText = "INSERT INTO Clientes VALUES (Null, @nome, @identificador, @endereco, @telefone, @celular, @email)"
-                        Comm.Parameters.AddWithValue("@nome", nome)
-                        Comm.Parameters.AddWithValue("@identificador", identificador)
-                        Comm.Parameters.AddWithValue("@endereco", endereco)
-                        Comm.Parameters.AddWithValue("@telefone", telefone)
-                        Comm.Parameters.AddWithValue("@celular", celular)
-                        Comm.Parameters.AddWithValue("@email", email)
+                        Comm.CommandText = "INSERT INTO Produtos VALUES (Null, @codigo, @produto, @unidadeMedida, @estoqueMinimo, @estoqueMaximo)"
+                        Comm.Parameters.AddWithValue("@codigo", codigo)
+                        Comm.Parameters.AddWithValue("@produto", produto)
+                        Comm.Parameters.AddWithValue("@unidadeMedida", unidadeMedida)
+                        Comm.Parameters.AddWithValue("@estoqueMinimo", estoqueMinimo)
+                        Comm.Parameters.AddWithValue("@estoqueMaximo", estoqueMaximo)
                         Comm.ExecuteNonQuery()
                     Catch ex As Exception
                         MessageBox.Show("Erro ao adicionar: " & ex.Message)
@@ -68,36 +66,33 @@
             deactivateFields()
             clearFields()
             activeButtons()
-            getClientes()
+            getProdutos()
         Else
             MessageBox.Show("Preacha os campos obrigatórios (*)")
         End If
     End Sub
-    Private Sub editCliente()
-        If tbNome.Text.Length > 0 And tbIdentificador.Text.Length > 0 Then
-            Dim nome = tbNome.Text.Trim
-            Dim identificador = tbIdentificador.Text.Trim
-            Dim endereco = tbEndereco.Text.Trim
-            Dim telefone = mkTelefone.Text.Trim
-            Dim celular = mkCelular.Text.Trim
-            Dim email = tbEmail.Text.Trim
+    Private Sub aditProduto()
+        If tbCodigo.Text.Length > 0 And tbProduto.Text.Length > 0 And tbEstoqueMinimo.Text.Length > 0 And tbEstoqueMaximo.Text.Length > 0 Then
+            Dim codigo = tbCodigo.Text.Trim
+            Dim produto = tbProduto.Text.Trim
+            Dim unidadeMedida = tbUnidadeMedida.Text.Trim
+            Dim estoqueMinimo = tbEstoqueMinimo.Text.Trim
+            Dim estoqueMaximo = tbEstoqueMaximo.Text.Trim
             Dim registro = tbRegistro.Text
             Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
                 Conn.Open()
                 Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
                     Try
-                        Comm.CommandText = "UPDATE Clientes Set nome = @nome, 
-                                            identificador = @identificador, 
-                                            endereco = @endereco, 
-                                            telefone = @telefone, 
-                                            celular = @celular, 
-                                            email = @email WHERE registro = @registro"
-                        Comm.Parameters.AddWithValue("@nome", nome)
-                        Comm.Parameters.AddWithValue("@identificador", identificador)
-                        Comm.Parameters.AddWithValue("@endereco", endereco)
-                        Comm.Parameters.AddWithValue("@telefone", telefone)
-                        Comm.Parameters.AddWithValue("@celular", celular)
-                        Comm.Parameters.AddWithValue("@email", email)
+                        Comm.CommandText = "UPDATE Produtos Set codigo = @codigo, 
+                                            produto = @produto, 
+                                            unidadeMedida = @unidadeMedida, 
+                                            estoqueMinimo = @estoqueMinimo, 
+                                            estoqueMaximo = @estoqueMaximo WHERE registro = @registro"
+                        Comm.Parameters.AddWithValue("@codigo", codigo)
+                        Comm.Parameters.AddWithValue("@produto", produto)
+                        Comm.Parameters.AddWithValue("@unidadeMedida", unidadeMedida)
+                        Comm.Parameters.AddWithValue("@estoqueMinimo", estoqueMinimo)
+                        Comm.Parameters.AddWithValue("@estoqueMaximo", estoqueMaximo)
                         Comm.Parameters.AddWithValue("@registro", registro)
                         Comm.ExecuteNonQuery()
                     Catch ex As Exception
@@ -111,52 +106,49 @@
             deactivateFields()
             clearFields()
             activeButtons()
-            getClientes()
+            getProdutos()
         Else
             MessageBox.Show("Preacha os campos obrigatórios (*)")
         End If
     End Sub
-    Private Sub delCliente()
+    Private Sub delProduto()
         Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo)
         If dialog = DialogResult.Yes Then
             Dim registro = tbRegistro.Text
             Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
                 Conn.Open()
                 Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Comm.CommandText = "DELETE FROM Clientes WHERE registro = @registro"
+                    Comm.CommandText = "DELETE FROM Produtos WHERE registro = @registro"
                     Comm.Parameters.AddWithValue("@registro", registro)
                     Comm.ExecuteNonQuery()
                 End Using
             End Using
             clearFields()
-            getClientes()
+            getProdutos()
         End If
     End Sub
     Private Sub clearFields()
         tbRegistro.Clear()
-        tbNome.Clear()
-        tbIdentificador.Clear()
-        tbEndereco.Clear()
-        mkTelefone.Clear()
-        mkCelular.Clear()
-        tbEmail.Clear()
-        tbNome.Select()
+        tbCodigo.Clear()
+        tbProduto.Clear()
+        tbUnidadeMedida.Clear()
+        tbEstoqueMinimo.Clear()
+        tbEstoqueMaximo.Clear()
+        tbCodigo.Select()
     End Sub
     Private Sub activeFields()
-        tbNome.Enabled = True
-        tbIdentificador.Enabled = True
-        tbEndereco.Enabled = True
-        mkTelefone.Enabled = True
-        mkCelular.Enabled = True
-        tbEmail.Enabled = True
+        tbCodigo.Enabled = True
+        tbProduto.Enabled = True
+        tbUnidadeMedida.Enabled = True
+        tbEstoqueMinimo.Enabled = True
+        tbEstoqueMaximo.Enabled = True
     End Sub
     Private Sub deactivateFields()
-        tbNome.Enabled = False
-        tbIdentificador.Enabled = False
-        tbEndereco.Enabled = False
-        mkTelefone.Enabled = False
-        mkCelular.Enabled = False
-        tbEmail.Enabled = False
+        tbCodigo.Enabled = False
+        tbProduto.Enabled = False
+        tbUnidadeMedida.Enabled = False
+        tbEstoqueMinimo.Enabled = False
+        tbEstoqueMaximo.Enabled = False
     End Sub
     Private Sub activeButtons()
         btnAdicionar.Enabled = True
@@ -175,17 +167,16 @@
             Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
                 Conn.Open()
                 Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Comm.CommandText = "SELECT * FROM Clientes WHERE registro = @registro"
+                    Comm.CommandText = "SELECT * FROM Produtos WHERE registro = @registro"
                     Comm.Parameters.AddWithValue("@registro", registro)
                     Using Reader = Comm.ExecuteReader()
                         While Reader.Read()
                             tbRegistro.Text = Reader.Item("registro").ToString()
-                            tbNome.Text = Reader.Item("nome").ToString()
-                            tbIdentificador.Text = Reader.Item("identificador").ToString
-                            tbEndereco.Text = Reader.Item("endereco").ToString
-                            mkTelefone.Text = Reader.Item("telefone").ToString
-                            mkCelular.Text = Reader.Item("celular").ToString
-                            tbEmail.Text = Reader.Item("email").ToString
+                            tbCodigo.Text = Reader.Item("codigo").ToString()
+                            tbProduto.Text = Reader.Item("produto").ToString
+                            tbUnidadeMedida.Text = Reader.Item("unidadeMedida").ToString
+                            tbEstoqueMinimo.Text = Reader.Item("estoqueMinimo").ToString
+                            tbEstoqueMaximo.Text = Reader.Item("estoqueMaximo").ToString
                         End While
                     End Using
                 End Using
@@ -198,13 +189,13 @@
         clearFields()
         deactivateFields()
         activeButtons()
-        getClientes()
+        getProdutos()
     End Sub
     Private Sub btnExcluir_Click(sender As Object, e As EventArgs) Handles btnExcluir.Click
         If tbRegistro.Text.Length > 0 Then
-            delCliente()
+            delProduto()
         Else
-            MessageBox.Show("Selecione um cliente para excluir")
+            MessageBox.Show("Selecione um produto para excluir")
         End If
     End Sub
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
@@ -215,7 +206,7 @@
             activeFields()
             deactivateButtons()
         Else
-            MessageBox.Show("Selecione um cliente para editar")
+            MessageBox.Show("Selecione um produto para editar")
         End If
     End Sub
     Private Sub btnAdicionar_Click(sender As Object, e As EventArgs) Handles btnAdicionar.Click
@@ -228,12 +219,12 @@
     End Sub
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
         If op.Equals("add") Then
-            addCliente()
+            addProduto()
         ElseIf op.Equals("edit") Then
-            editCliente()
+            aditProduto()
         End If
     End Sub
     Private Sub btnPesquisar_Click(sender As Object, e As EventArgs) Handles btnPesquisar.Click
-        searchCliente()
+        searchProduto()
     End Sub
 End Class

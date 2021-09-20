@@ -39,6 +39,9 @@ Partial Class FormClientes
         Me.btnEditar = New System.Windows.Forms.Button()
         Me.btnExcluir = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.registro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nome = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.identificador = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbPesquisar = New System.Windows.Forms.TextBox()
         Me.btnPesquisar = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -46,9 +49,6 @@ Partial Class FormClientes
         Me.btnSalvar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.registro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nome = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.identificador = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -58,7 +58,7 @@ Partial Class FormClientes
         Me.tbNome.Location = New System.Drawing.Point(12, 65)
         Me.tbNome.Name = "tbNome"
         Me.tbNome.Size = New System.Drawing.Size(335, 20)
-        Me.tbNome.TabIndex = 0
+        Me.tbNome.TabIndex = 4
         '
         'Label1
         '
@@ -66,7 +66,7 @@ Partial Class FormClientes
         Me.Label1.Location = New System.Drawing.Point(10, 49)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(120, 13)
-        Me.Label1.TabIndex = 1
+        Me.Label1.TabIndex = 3
         Me.Label1.Text = "Nome / Razão social:(*)"
         '
         'Label2
@@ -75,7 +75,7 @@ Partial Class FormClientes
         Me.Label2.Location = New System.Drawing.Point(10, 93)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(78, 13)
-        Me.Label2.TabIndex = 3
+        Me.Label2.TabIndex = 5
         Me.Label2.Text = "CPF / CNPJ:(*)"
         '
         'tbIdentificador
@@ -84,7 +84,7 @@ Partial Class FormClientes
         Me.tbIdentificador.Location = New System.Drawing.Point(12, 109)
         Me.tbIdentificador.Name = "tbIdentificador"
         Me.tbIdentificador.Size = New System.Drawing.Size(335, 20)
-        Me.tbIdentificador.TabIndex = 2
+        Me.tbIdentificador.TabIndex = 6
         '
         'Label3
         '
@@ -92,7 +92,7 @@ Partial Class FormClientes
         Me.Label3.Location = New System.Drawing.Point(10, 138)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(56, 13)
-        Me.Label3.TabIndex = 5
+        Me.Label3.TabIndex = 7
         Me.Label3.Text = "Endereço:"
         '
         'tbEndereco
@@ -101,7 +101,7 @@ Partial Class FormClientes
         Me.tbEndereco.Location = New System.Drawing.Point(12, 154)
         Me.tbEndereco.Name = "tbEndereco"
         Me.tbEndereco.Size = New System.Drawing.Size(335, 53)
-        Me.tbEndereco.TabIndex = 6
+        Me.tbEndereco.TabIndex = 8
         Me.tbEndereco.Text = ""
         '
         'mkCelular
@@ -111,7 +111,7 @@ Partial Class FormClientes
         Me.mkCelular.Mask = "(99) 0 0000-0000"
         Me.mkCelular.Name = "mkCelular"
         Me.mkCelular.Size = New System.Drawing.Size(100, 20)
-        Me.mkCelular.TabIndex = 10
+        Me.mkCelular.TabIndex = 12
         '
         'Label4
         '
@@ -119,7 +119,7 @@ Partial Class FormClientes
         Me.Label4.Location = New System.Drawing.Point(115, 219)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(99, 13)
-        Me.Label4.TabIndex = 8
+        Me.Label4.TabIndex = 11
         Me.Label4.Text = "Celular / Whatsapp"
         '
         'Label5
@@ -137,7 +137,7 @@ Partial Class FormClientes
         Me.mkTelefone.Mask = "(99) 0000-0000"
         Me.mkTelefone.Name = "mkTelefone"
         Me.mkTelefone.Size = New System.Drawing.Size(100, 20)
-        Me.mkTelefone.TabIndex = 7
+        Me.mkTelefone.TabIndex = 10
         '
         'Label6
         '
@@ -145,7 +145,7 @@ Partial Class FormClientes
         Me.Label6.Location = New System.Drawing.Point(9, 219)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(49, 13)
-        Me.Label6.TabIndex = 11
+        Me.Label6.TabIndex = 9
         Me.Label6.Text = "Telefone"
         '
         'tbEmail
@@ -154,7 +154,7 @@ Partial Class FormClientes
         Me.tbEmail.Location = New System.Drawing.Point(12, 282)
         Me.tbEmail.Name = "tbEmail"
         Me.tbEmail.Size = New System.Drawing.Size(335, 20)
-        Me.tbEmail.TabIndex = 12
+        Me.tbEmail.TabIndex = 14
         '
         'Label7
         '
@@ -201,71 +201,8 @@ Partial Class FormClientes
         Me.DataGridView1.Location = New System.Drawing.Point(366, 56)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(549, 322)
-        Me.DataGridView1.TabIndex = 22
-        '
-        'tbPesquisar
-        '
-        Me.tbPesquisar.Location = New System.Drawing.Point(449, 26)
-        Me.tbPesquisar.Name = "tbPesquisar"
-        Me.tbPesquisar.Size = New System.Drawing.Size(335, 20)
-        Me.tbPesquisar.TabIndex = 20
-        Me.tbPesquisar.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'btnPesquisar
-        '
-        Me.btnPesquisar.Location = New System.Drawing.Point(790, 24)
-        Me.btnPesquisar.Name = "btnPesquisar"
-        Me.btnPesquisar.Size = New System.Drawing.Size(75, 23)
-        Me.btnPesquisar.TabIndex = 21
-        Me.btnPesquisar.Text = "Pesquisar"
-        Me.btnPesquisar.UseVisualStyleBackColor = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(11, 10)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(70, 13)
-        Me.Label9.TabIndex = 24
-        Me.Label9.Text = "Registro (Nº):"
-        '
-        'tbRegistro
-        '
-        Me.tbRegistro.Enabled = False
-        Me.tbRegistro.Location = New System.Drawing.Point(13, 26)
-        Me.tbRegistro.Name = "tbRegistro"
-        Me.tbRegistro.Size = New System.Drawing.Size(75, 20)
-        Me.tbRegistro.TabIndex = 23
-        '
-        'btnSalvar
-        '
-        Me.btnSalvar.Enabled = False
-        Me.btnSalvar.Location = New System.Drawing.Point(140, 308)
-        Me.btnSalvar.Name = "btnSalvar"
-        Me.btnSalvar.Size = New System.Drawing.Size(75, 23)
-        Me.btnSalvar.TabIndex = 25
-        Me.btnSalvar.Text = "Salvar"
-        Me.btnSalvar.UseVisualStyleBackColor = True
-        '
-        'btnCancelar
-        '
-        Me.btnCancelar.Enabled = False
-        Me.btnCancelar.Location = New System.Drawing.Point(260, 337)
-        Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancelar.TabIndex = 19
-        Me.btnCancelar.Text = "Cancelar"
-        Me.btnCancelar.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(446, 9)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(185, 13)
-        Me.Label8.TabIndex = 26
-        Me.Label8.Text = "Nome / Razão Social ou CPF / CNPJ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.DataGridView1.Size = New System.Drawing.Size(549, 304)
+        Me.DataGridView1.TabIndex = 23
         '
         'registro
         '
@@ -287,11 +224,74 @@ Partial Class FormClientes
         Me.identificador.ReadOnly = True
         Me.identificador.Width = 200
         '
+        'tbPesquisar
+        '
+        Me.tbPesquisar.Location = New System.Drawing.Point(449, 26)
+        Me.tbPesquisar.Name = "tbPesquisar"
+        Me.tbPesquisar.Size = New System.Drawing.Size(335, 20)
+        Me.tbPesquisar.TabIndex = 21
+        Me.tbPesquisar.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'btnPesquisar
+        '
+        Me.btnPesquisar.Location = New System.Drawing.Point(790, 24)
+        Me.btnPesquisar.Name = "btnPesquisar"
+        Me.btnPesquisar.Size = New System.Drawing.Size(75, 23)
+        Me.btnPesquisar.TabIndex = 22
+        Me.btnPesquisar.Text = "Pesquisar"
+        Me.btnPesquisar.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(11, 10)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(70, 13)
+        Me.Label9.TabIndex = 1
+        Me.Label9.Text = "Registro (Nº):"
+        '
+        'tbRegistro
+        '
+        Me.tbRegistro.Enabled = False
+        Me.tbRegistro.Location = New System.Drawing.Point(13, 26)
+        Me.tbRegistro.Name = "tbRegistro"
+        Me.tbRegistro.Size = New System.Drawing.Size(75, 20)
+        Me.tbRegistro.TabIndex = 2
+        '
+        'btnSalvar
+        '
+        Me.btnSalvar.Enabled = False
+        Me.btnSalvar.Location = New System.Drawing.Point(140, 308)
+        Me.btnSalvar.Name = "btnSalvar"
+        Me.btnSalvar.Size = New System.Drawing.Size(75, 23)
+        Me.btnSalvar.TabIndex = 15
+        Me.btnSalvar.Text = "Salvar"
+        Me.btnSalvar.UseVisualStyleBackColor = True
+        '
+        'btnCancelar
+        '
+        Me.btnCancelar.Enabled = False
+        Me.btnCancelar.Location = New System.Drawing.Point(260, 337)
+        Me.btnCancelar.Name = "btnCancelar"
+        Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancelar.TabIndex = 19
+        Me.btnCancelar.Text = "Cancelar"
+        Me.btnCancelar.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(446, 9)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(188, 13)
+        Me.Label8.TabIndex = 20
+        Me.Label8.Text = "Nome / Razão Social ou CPF / CNPJ:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
         'FormClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(927, 382)
+        Me.ClientSize = New System.Drawing.Size(927, 371)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.btnSalvar)
         Me.Controls.Add(Me.Label9)
@@ -318,6 +318,7 @@ Partial Class FormClientes
         Me.Controls.Add(Me.tbNome)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormClientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Clientes"

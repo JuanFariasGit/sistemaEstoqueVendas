@@ -28,6 +28,8 @@ Partial Class FormPrincipal
         Me.FornecedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProdutosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.EntradaESaídaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EntradaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaídaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConsultarEstoqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RelatórioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
@@ -38,7 +40,7 @@ Partial Class FormPrincipal
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.FornecedoresToolStripMenuItem, Me.ProdutosToolStripMenuItem1, Me.EntradaESaídaToolStripMenuItem, Me.ConsultarEstoqueToolStripMenuItem, Me.RelatórioToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(583, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(593, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -68,9 +70,22 @@ Partial Class FormPrincipal
         '
         'EntradaESaídaToolStripMenuItem
         '
+        Me.EntradaESaídaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EntradaToolStripMenuItem, Me.SaídaToolStripMenuItem})
         Me.EntradaESaídaToolStripMenuItem.Name = "EntradaESaídaToolStripMenuItem"
-        Me.EntradaESaídaToolStripMenuItem.Size = New System.Drawing.Size(99, 20)
-        Me.EntradaESaídaToolStripMenuItem.Text = "Entrada e Saída"
+        Me.EntradaESaídaToolStripMenuItem.Size = New System.Drawing.Size(109, 20)
+        Me.EntradaESaídaToolStripMenuItem.Text = "Entradas e Saídas"
+        '
+        'EntradaToolStripMenuItem
+        '
+        Me.EntradaToolStripMenuItem.Name = "EntradaToolStripMenuItem"
+        Me.EntradaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EntradaToolStripMenuItem.Text = "Entradas"
+        '
+        'SaídaToolStripMenuItem
+        '
+        Me.SaídaToolStripMenuItem.Name = "SaídaToolStripMenuItem"
+        Me.SaídaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaídaToolStripMenuItem.Text = "Saídas"
         '
         'ConsultarEstoqueToolStripMenuItem
         '
@@ -88,7 +103,7 @@ Partial Class FormPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(583, 450)
+        Me.ClientSize = New System.Drawing.Size(593, 262)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MainMenuStrip = Me.MenuStrip1
@@ -111,4 +126,6 @@ Partial Class FormPrincipal
     Friend WithEvents EntradaESaídaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConsultarEstoqueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RelatórioToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EntradaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaídaToolStripMenuItem As ToolStripMenuItem
 End Class

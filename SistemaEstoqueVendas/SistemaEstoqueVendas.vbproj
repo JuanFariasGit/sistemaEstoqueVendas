@@ -78,6 +78,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormEntradas.Designer.vb">
+      <DependentUpon>FormEntradas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEntradas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdutos.Designer.vb">
+      <DependentUpon>FormProdutos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdutos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFornecedores.Designer.vb">
       <DependentUpon>FormFornecedores.vb</DependentUpon>
     </Compile>
@@ -114,6 +126,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormEntradas.resx">
+      <DependentUpon>FormEntradas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdutos.resx">
+      <DependentUpon>FormProdutos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFornecedores.resx">
       <DependentUpon>FormFornecedores.vb</DependentUpon>
     </EmbeddedResource>

@@ -25,9 +25,8 @@
         Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
             Conn.Open()
             Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Fornecedores WHERE nome LIKE @searchValue OR identificador LIKE @identificador"
+                Comm.CommandText = "SELECT * FROM Fornecedores WHERE nome LIKE @searchValue OR identificador LIKE @searchValue"
                 Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
-                Comm.Parameters.AddWithValue("@identificador", "%" + searchValue + "%")
                 Using Reader = Comm.ExecuteReader()
                     While Reader.Read()
                         DataGridView1.Rows.Add(Reader.Item("registro").ToString,
