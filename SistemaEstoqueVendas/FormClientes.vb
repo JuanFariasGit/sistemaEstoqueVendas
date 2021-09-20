@@ -2,6 +2,7 @@
     Private op As String
     Private Sub FormClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getClientes()
+        tbPesquisar.Select()
     End Sub
     Private Sub getClientes()
         DataGridView1.Rows.Clear()

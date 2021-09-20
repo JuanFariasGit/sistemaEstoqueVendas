@@ -2,6 +2,7 @@
     Private op As String
     Private Sub FormProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getProdutos()
+        tbPesquisar.Select()
     End Sub
     Private Sub getProdutos()
         DataGridView1.Rows.Clear()
