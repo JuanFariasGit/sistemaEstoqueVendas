@@ -1,7 +1,8 @@
 ﻿Imports System.Data.SQLite
 Public Class FormClientes
     Private op As String
-    Private Conn As New SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+    Private Gl As New Globais
+    Private Conn As New SQLiteConnection("Data Source=" + Gl.caminhoBanco.ToString())
     Private Comm As New SQLiteCommand(Conn)
     Private Sub FormClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getClientes()

@@ -78,6 +78,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Globais.vb" />
     <Compile Include="FormEntradas.Designer.vb">
       <DependentUpon>FormEntradas.vb</DependentUpon>
     </Compile>
