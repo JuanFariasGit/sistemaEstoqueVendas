@@ -1,42 +1,39 @@
-﻿Public Class FormFornecedores
+﻿Imports System.Data.SQLite
+Public Class FormFornecedores
     Private op As String
+    Private Conn As New SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+    Private Comm As New SQLiteCommand(Conn)
     Private Sub FormFornecedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getFornecedores()
         tbPesquisar.Select()
     End Sub
     Private Sub getFornecedores()
         DataGridView1.Rows.Clear()
-        Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
-            Conn.Open()
-            Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Fornecedores"
-                Using Reader = Comm.ExecuteReader()
-                    While Reader.Read()
-                        DataGridView1.Rows.Add(Reader.Item("registro").ToString,
+        Conn.Open()
+        Comm.CommandText = "SELECT registro, nome, identificador FROM Fornecedores"
+        Using Reader = Comm.ExecuteReader()
+            While Reader.Read()
+                DataGridView1.Rows.Add(Reader.Item("registro").ToString,
                                                Reader.Item("nome").ToString,
                                                Reader.Item("identificador").ToString)
-                    End While
-                End Using
-            End Using
+            End While
         End Using
+        Conn.Close()
     End Sub
     Private Sub searchFornecedor()
         Dim searchValue = tbPesquisar.Text.Trim()
         DataGridView1.Rows.Clear()
-        Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
-            Conn.Open()
-            Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Fornecedores WHERE nome LIKE @searchValue OR identificador LIKE @searchValue"
-                Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
-                Using Reader = Comm.ExecuteReader()
-                    While Reader.Read()
-                        DataGridView1.Rows.Add(Reader.Item("registro").ToString,
-                                               Reader.Item("nome").ToString,
-                                               Reader.Item("identificador").ToString)
-                    End While
-                End Using
-            End Using
+        Conn.Open()
+        Comm.CommandText = "SELECT registro, nome, identificador FROM Fornecedores WHERE nome LIKE @searchValue OR identificador LIKE @searchValue"
+        Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
+        Using Reader = Comm.ExecuteReader()
+            While Reader.Read()
+                DataGridView1.Rows.Add(Reader.Item("registro").ToString,
+                                       Reader.Item("nome").ToString,
+                                       Reader.Item("identificador").ToString)
+            End While
         End Using
+        Conn.Close()
     End Sub
     Private Sub addFornecedor()
         If tbNome.Text.Length > 0 And tbIdentificador.Text.Length > 0 Then
@@ -46,23 +43,21 @@
             Dim telefone = mkTelefone.Text.Trim
             Dim celular = mkCelular.Text.Trim
             Dim email = tbEmail.Text.Trim
-            Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+            Try
                 Conn.Open()
-                Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Try
-                        Comm.CommandText = "INSERT INTO Fornecedores VALUES (Null, @nome, @identificador, @endereco, @telefone, @celular, @email)"
-                        Comm.Parameters.AddWithValue("@nome", nome)
-                        Comm.Parameters.AddWithValue("@identificador", identificador)
-                        Comm.Parameters.AddWithValue("@endereco", endereco)
-                        Comm.Parameters.AddWithValue("@telefone", telefone)
-                        Comm.Parameters.AddWithValue("@celular", celular)
-                        Comm.Parameters.AddWithValue("@email", email)
-                        Comm.ExecuteNonQuery()
-                    Catch ex As Exception
-                        MessageBox.Show("Erro ao adicionar: " & ex.Message)
-                    End Try
-                End Using
-            End Using
+                Comm.CommandText = "INSERT INTO Fornecedores VALUES (Null, @nome, @identificador, @endereco, @telefone, @celular, @email)"
+                Comm.Parameters.AddWithValue("@nome", nome)
+                Comm.Parameters.AddWithValue("@identificador", identificador)
+                Comm.Parameters.AddWithValue("@endereco", endereco)
+                Comm.Parameters.AddWithValue("@telefone", telefone)
+                Comm.Parameters.AddWithValue("@celular", celular)
+                Comm.Parameters.AddWithValue("@email", email)
+                Comm.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show("Erro ao adicionar: " & ex.Message)
+            Finally
+                Conn.Close()
+            End Try
             op = ""
             btnSalvar.Enabled = False
             btnCancelar.Enabled = False
@@ -83,29 +78,27 @@
             Dim celular = mkCelular.Text.Trim
             Dim email = tbEmail.Text.Trim
             Dim registro = tbRegistro.Text
-            Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+            Try
                 Conn.Open()
-                Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Try
-                        Comm.CommandText = "UPDATE Fornecedores Set nome = @nome, 
+                Comm.CommandText = "UPDATE Fornecedores Set nome = @nome, 
                                             identificador = @identificador, 
                                             endereco = @endereco, 
                                             telefone = @telefone, 
                                             celular = @celular, 
                                             email = @email WHERE registro = @registro"
-                        Comm.Parameters.AddWithValue("@nome", nome)
-                        Comm.Parameters.AddWithValue("@identificador", identificador)
-                        Comm.Parameters.AddWithValue("@endereco", endereco)
-                        Comm.Parameters.AddWithValue("@telefone", telefone)
-                        Comm.Parameters.AddWithValue("@celular", celular)
-                        Comm.Parameters.AddWithValue("@email", email)
-                        Comm.Parameters.AddWithValue("@registro", registro)
-                        Comm.ExecuteNonQuery()
-                    Catch ex As Exception
-                        MessageBox.Show("Erro ao adicionar: " & ex.Message)
-                    End Try
-                End Using
-            End Using
+                Comm.Parameters.AddWithValue("@nome", nome)
+                Comm.Parameters.AddWithValue("@identificador", identificador)
+                Comm.Parameters.AddWithValue("@endereco", endereco)
+                Comm.Parameters.AddWithValue("@telefone", telefone)
+                Comm.Parameters.AddWithValue("@celular", celular)
+                Comm.Parameters.AddWithValue("@email", email)
+                Comm.Parameters.AddWithValue("@registro", registro)
+                Comm.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show("Erro ao adicionar: " & ex.Message)
+            Finally
+                Conn.Close()
+            End Try
             op = ""
             btnSalvar.Enabled = False
             btnCancelar.Enabled = False
@@ -121,14 +114,16 @@
         Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo)
         If dialog = DialogResult.Yes Then
             Dim registro = tbRegistro.Text
-            Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+            Try
                 Conn.Open()
-                Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Comm.CommandText = "DELETE FROM Fornecedores WHERE registro = @registro"
-                    Comm.Parameters.AddWithValue("@registro", registro)
-                    Comm.ExecuteNonQuery()
-                End Using
-            End Using
+                Comm.CommandText = "DELETE FROM Fornecedores WHERE registro = @registro"
+                Comm.Parameters.AddWithValue("@registro", registro)
+                Comm.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show("Erro ao excluir: " & ex.Message)
+            Finally
+                Conn.Close()
+            End Try
             clearFields()
             getFornecedores()
         End If
@@ -173,24 +168,21 @@
         If e.RowIndex <> -1 Then
             Dim selectedRow = DataGridView1.Rows(e.RowIndex)
             Dim registro = selectedRow.Cells("registro").Value
-            Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
-                Conn.Open()
-                Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Comm.CommandText = "SELECT * FROM Fornecedores WHERE registro = @registro"
-                    Comm.Parameters.AddWithValue("@registro", registro)
-                    Using Reader = Comm.ExecuteReader()
-                        While Reader.Read()
-                            tbRegistro.Text = Reader.Item("registro").ToString()
-                            tbNome.Text = Reader.Item("nome").ToString()
-                            tbIdentificador.Text = Reader.Item("identificador").ToString
-                            tbEndereco.Text = Reader.Item("endereco").ToString
-                            mkTelefone.Text = Reader.Item("telefone").ToString
-                            mkCelular.Text = Reader.Item("celular").ToString
-                            tbEmail.Text = Reader.Item("email").ToString
-                        End While
-                    End Using
-                End Using
+            Conn.Open()
+            Comm.CommandText = "SELECT * FROM Fornecedores WHERE registro = @registro"
+            Comm.Parameters.AddWithValue("@registro", registro)
+            Using Reader = Comm.ExecuteReader()
+                While Reader.Read()
+                    tbRegistro.Text = Reader.Item("registro").ToString()
+                    tbNome.Text = Reader.Item("nome").ToString()
+                    tbIdentificador.Text = Reader.Item("identificador").ToString
+                    tbEndereco.Text = Reader.Item("endereco").ToString
+                    mkTelefone.Text = Reader.Item("telefone").ToString
+                    mkCelular.Text = Reader.Item("celular").ToString
+                    tbEmail.Text = Reader.Item("email").ToString
+                End While
             End Using
+            Conn.Close()
         End If
     End Sub
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click

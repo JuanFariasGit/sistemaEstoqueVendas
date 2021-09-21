@@ -78,13 +78,13 @@ Partial Class FormPrincipal
         'EntradaToolStripMenuItem
         '
         Me.EntradaToolStripMenuItem.Name = "EntradaToolStripMenuItem"
-        Me.EntradaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EntradaToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.EntradaToolStripMenuItem.Text = "Entradas"
         '
         'SaídaToolStripMenuItem
         '
         Me.SaídaToolStripMenuItem.Name = "SaídaToolStripMenuItem"
-        Me.SaídaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaídaToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.SaídaToolStripMenuItem.Text = "Saídas"
         '
         'ConsultarEstoqueToolStripMenuItem
@@ -103,7 +103,7 @@ Partial Class FormPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(593, 262)
+        Me.ClientSize = New System.Drawing.Size(593, 241)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MainMenuStrip = Me.MenuStrip1

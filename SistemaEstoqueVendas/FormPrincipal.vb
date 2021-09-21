@@ -8,4 +8,7 @@
     Private Sub ProdutosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ProdutosToolStripMenuItem1.Click
         FormProdutos.Show()
     End Sub
+    Private Sub EntradaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EntradaToolStripMenuItem.Click
+        FormEntradas.Show()
+    End Sub
 End Class

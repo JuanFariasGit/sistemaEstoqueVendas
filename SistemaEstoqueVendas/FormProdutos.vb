@@ -1,42 +1,39 @@
-﻿Public Class FormProdutos
+﻿Imports System.Data.SQLite
+Public Class FormProdutos
     Private op As String
+    Private Conn As New SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+    Private Comm As New SQLiteCommand(Conn)
     Private Sub FormProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getProdutos()
         tbPesquisar.Select()
     End Sub
     Private Sub getProdutos()
         DataGridView1.Rows.Clear()
-        Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
-            Conn.Open()
-            Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Produtos"
-                Using Reader = Comm.ExecuteReader()
-                    While Reader.Read()
-                        DataGridView1.Rows.Add(Reader.Item("registro").ToString,
+        Conn.Open()
+        Comm.CommandText = "SELECT registro, codigo, produto FROM Produtos"
+        Using Reader = Comm.ExecuteReader()
+            While Reader.Read()
+                DataGridView1.Rows.Add(Reader.Item("registro").ToString,
                                                Reader.Item("codigo").ToString,
                                                Reader.Item("produto").ToString)
-                    End While
-                End Using
-            End Using
+            End While
         End Using
+        Conn.Close()
     End Sub
     Private Sub searchProduto()
         Dim searchValue = tbPesquisar.Text.Trim()
         DataGridView1.Rows.Clear()
-        Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
-            Conn.Open()
-            Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                Comm.CommandText = "SELECT * FROM Produtos WHERE codigo LIKE @searchValue OR produto LIKE @searchValue"
-                Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
-                Using Reader = Comm.ExecuteReader()
-                    While Reader.Read()
-                        DataGridView1.Rows.Add(Reader.Item("registro").ToString,
+        Conn.Open()
+        Comm.CommandText = "SELECT registro, codigo, produto FROM Produtos WHERE codigo LIKE @searchValue OR produto LIKE @searchValue"
+        Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
+        Using Reader = Comm.ExecuteReader()
+            While Reader.Read()
+                DataGridView1.Rows.Add(Reader.Item("registro").ToString,
                                                Reader.Item("codigo").ToString,
                                                Reader.Item("produto").ToString)
-                    End While
-                End Using
-            End Using
+            End While
         End Using
+        Conn.Close()
     End Sub
     Private Sub addProduto()
         If tbCodigo.Text.Length > 0 And tbProduto.Text.Length > 0 And tbEstoqueMinimo.Text.Length > 0 And tbEstoqueMaximo.Text.Length > 0 Then
@@ -45,22 +42,20 @@
             Dim unidadeMedida = tbUnidadeMedida.Text.Trim
             Dim estoqueMinimo = tbEstoqueMinimo.Text.Trim
             Dim estoqueMaximo = tbEstoqueMaximo.Text.Trim
-            Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+            Try
                 Conn.Open()
-                Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Try
-                        Comm.CommandText = "INSERT INTO Produtos VALUES (Null, @codigo, @produto, @unidadeMedida, @estoqueMinimo, @estoqueMaximo)"
-                        Comm.Parameters.AddWithValue("@codigo", codigo)
-                        Comm.Parameters.AddWithValue("@produto", produto)
-                        Comm.Parameters.AddWithValue("@unidadeMedida", unidadeMedida)
-                        Comm.Parameters.AddWithValue("@estoqueMinimo", estoqueMinimo)
-                        Comm.Parameters.AddWithValue("@estoqueMaximo", estoqueMaximo)
-                        Comm.ExecuteNonQuery()
-                    Catch ex As Exception
-                        MessageBox.Show("Erro ao adicionar: " & ex.Message)
-                    End Try
-                End Using
-            End Using
+                Comm.CommandText = "INSERT INTO Produtos VALUES (Null, @codigo, @produto, @unidadeMedida, @estoqueMinimo, @estoqueMaximo)"
+                Comm.Parameters.AddWithValue("@codigo", codigo)
+                Comm.Parameters.AddWithValue("@produto", produto)
+                Comm.Parameters.AddWithValue("@unidadeMedida", unidadeMedida)
+                Comm.Parameters.AddWithValue("@estoqueMinimo", estoqueMinimo)
+                Comm.Parameters.AddWithValue("@estoqueMaximo", estoqueMaximo)
+                Comm.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show("Erro ao adicionar: " & ex.Message)
+            Finally
+                Conn.Close()
+            End Try
             op = ""
             btnSalvar.Enabled = False
             btnCancelar.Enabled = False
@@ -80,27 +75,25 @@
             Dim estoqueMinimo = tbEstoqueMinimo.Text.Trim
             Dim estoqueMaximo = tbEstoqueMaximo.Text.Trim
             Dim registro = tbRegistro.Text
-            Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+            Try
                 Conn.Open()
-                Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Try
-                        Comm.CommandText = "UPDATE Produtos Set codigo = @codigo, 
+                Comm.CommandText = "UPDATE Produtos Set codigo = @codigo, 
                                             produto = @produto, 
                                             unidadeMedida = @unidadeMedida, 
                                             estoqueMinimo = @estoqueMinimo, 
                                             estoqueMaximo = @estoqueMaximo WHERE registro = @registro"
-                        Comm.Parameters.AddWithValue("@codigo", codigo)
-                        Comm.Parameters.AddWithValue("@produto", produto)
-                        Comm.Parameters.AddWithValue("@unidadeMedida", unidadeMedida)
-                        Comm.Parameters.AddWithValue("@estoqueMinimo", estoqueMinimo)
-                        Comm.Parameters.AddWithValue("@estoqueMaximo", estoqueMaximo)
-                        Comm.Parameters.AddWithValue("@registro", registro)
-                        Comm.ExecuteNonQuery()
-                    Catch ex As Exception
-                        MessageBox.Show("Erro ao adicionar: " & ex.Message)
-                    End Try
-                End Using
-            End Using
+                Comm.Parameters.AddWithValue("@codigo", codigo)
+                Comm.Parameters.AddWithValue("@produto", produto)
+                Comm.Parameters.AddWithValue("@unidadeMedida", unidadeMedida)
+                Comm.Parameters.AddWithValue("@estoqueMinimo", estoqueMinimo)
+                Comm.Parameters.AddWithValue("@estoqueMaximo", estoqueMaximo)
+                Comm.Parameters.AddWithValue("@registro", registro)
+                Comm.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show("Erro ao atualizar: " & ex.Message)
+            Finally
+                Conn.Close()
+            End Try
             op = ""
             btnSalvar.Enabled = False
             btnCancelar.Enabled = False
@@ -116,14 +109,16 @@
         Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo)
         If dialog = DialogResult.Yes Then
             Dim registro = tbRegistro.Text
-            Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
+            Try
                 Conn.Open()
-                Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Comm.CommandText = "DELETE FROM Produtos WHERE registro = @registro"
-                    Comm.Parameters.AddWithValue("@registro", registro)
-                    Comm.ExecuteNonQuery()
-                End Using
-            End Using
+                Comm.CommandText = "DELETE FROM Produtos WHERE registro = @registro"
+                Comm.Parameters.AddWithValue("@registro", registro)
+                Comm.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show("Erro ao excluir: " & ex.Message)
+            Finally
+                Conn.Close()
+            End Try
             clearFields()
             getProdutos()
         End If
@@ -165,23 +160,20 @@
         If e.RowIndex <> -1 Then
             Dim selectedRow = DataGridView1.Rows(e.RowIndex)
             Dim registro = selectedRow.Cells("registro").Value
-            Using Conn As New System.Data.SQLite.SQLiteConnection("Data Source=C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\Banco\SistemaEstoqueVendas.db")
-                Conn.Open()
-                Using Comm As New System.Data.SQLite.SQLiteCommand(Conn)
-                    Comm.CommandText = "SELECT * FROM Produtos WHERE registro = @registro"
-                    Comm.Parameters.AddWithValue("@registro", registro)
-                    Using Reader = Comm.ExecuteReader()
-                        While Reader.Read()
-                            tbRegistro.Text = Reader.Item("registro").ToString()
-                            tbCodigo.Text = Reader.Item("codigo").ToString()
-                            tbProduto.Text = Reader.Item("produto").ToString
-                            tbUnidadeMedida.Text = Reader.Item("unidadeMedida").ToString
-                            tbEstoqueMinimo.Text = Reader.Item("estoqueMinimo").ToString
-                            tbEstoqueMaximo.Text = Reader.Item("estoqueMaximo").ToString
-                        End While
-                    End Using
-                End Using
+            Conn.Open()
+            Comm.CommandText = "SELECT * FROM Produtos WHERE registro = @registro"
+            Comm.Parameters.AddWithValue("@registro", registro)
+            Using Reader = Comm.ExecuteReader()
+                While Reader.Read()
+                    tbRegistro.Text = Reader.Item("registro").ToString()
+                    tbCodigo.Text = Reader.Item("codigo").ToString()
+                    tbProduto.Text = Reader.Item("produto").ToString
+                    tbUnidadeMedida.Text = Reader.Item("unidadeMedida").ToString
+                    tbEstoqueMinimo.Text = Reader.Item("estoqueMinimo").ToString
+                    tbEstoqueMaximo.Text = Reader.Item("estoqueMaximo").ToString
+                End While
             End Using
+            Conn.Close()
         End If
     End Sub
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
