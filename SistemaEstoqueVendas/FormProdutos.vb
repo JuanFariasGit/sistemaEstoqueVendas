@@ -2,7 +2,7 @@
 Public Class FormProdutos
     Private op As String
     Private Gl As New Globais
-    Private Conn As New SQLiteConnection("Data Source=" + Gl.caminhoBanco.ToString())
+    Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString())
     Private Comm As New SQLiteCommand(Conn)
     Private Sub FormProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getProdutos()
@@ -26,7 +26,7 @@ Public Class FormProdutos
         DataGridView1.Rows.Clear()
         Conn.Open()
         Comm.CommandText = "SELECT registro, codigo, produto FROM Produtos WHERE codigo LIKE @searchValue OR produto LIKE @searchValue"
-        Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
+        Comm.Parameters.AddWithValue("@searchValue", "%" & searchValue & "%")
         Using Reader = Comm.ExecuteReader()
             While Reader.Read()
                 DataGridView1.Rows.Add(Reader.Item("registro").ToString,
@@ -60,6 +60,7 @@ Public Class FormProdutos
             op = ""
             btnSalvar.Enabled = False
             btnCancelar.Enabled = False
+            DataGridView1.Enabled = True
             deactivateFields()
             clearFields()
             activeButtons()
@@ -180,6 +181,7 @@ Public Class FormProdutos
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
         btnCancelar.Enabled = False
         btnSalvar.Enabled = False
+        DataGridView1.Enabled = True
         clearFields()
         deactivateFields()
         activeButtons()
@@ -207,6 +209,7 @@ Public Class FormProdutos
         op = "add"
         btnSalvar.Enabled = True
         btnCancelar.Enabled = True
+        DataGridView1.Enabled = False
         activeFields()
         deactivateButtons()
         clearFields()

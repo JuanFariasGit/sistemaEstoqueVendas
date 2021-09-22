@@ -22,16 +22,9 @@ Partial Class FormEntradas
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(13, 27)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(301, 20)
-        Me.TextBox1.TabIndex = 2
         '
         'Label1
         '
@@ -42,13 +35,21 @@ Partial Class FormEntradas
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Fornecedor:"
         '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(12, 26)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.TabIndex = 2
+        '
         'FormEntradas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TextBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -59,7 +60,6 @@ Partial Class FormEntradas
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents ComboBox1 As ComboBox
 End Class

@@ -2,7 +2,7 @@
 Public Class FormFornecedores
     Private op As String
     Private Gl As New Globais
-    Private Conn As New SQLiteConnection("Data Source=" + Gl.caminhoBanco.ToString())
+    Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString())
     Private Comm As New SQLiteCommand(Conn)
     Private Sub FormFornecedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getFornecedores()
@@ -26,7 +26,7 @@ Public Class FormFornecedores
         DataGridView1.Rows.Clear()
         Conn.Open()
         Comm.CommandText = "SELECT registro, nome, identificador FROM Fornecedores WHERE nome LIKE @searchValue OR identificador LIKE @searchValue"
-        Comm.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%")
+        Comm.Parameters.AddWithValue("@searchValue", "%" & searchValue & "%")
         Using Reader = Comm.ExecuteReader()
             While Reader.Read()
                 DataGridView1.Rows.Add(Reader.Item("registro").ToString,
@@ -62,6 +62,7 @@ Public Class FormFornecedores
             op = ""
             btnSalvar.Enabled = False
             btnCancelar.Enabled = False
+            DataGridView1.Enabled = True
             deactivateFields()
             clearFields()
             activeButtons()
@@ -189,6 +190,7 @@ Public Class FormFornecedores
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
         btnCancelar.Enabled = False
         btnSalvar.Enabled = False
+        DataGridView1.Enabled = True
         clearFields()
         deactivateFields()
         activeButtons()
@@ -216,6 +218,7 @@ Public Class FormFornecedores
         op = "add"
         btnSalvar.Enabled = True
         btnCancelar.Enabled = True
+        DataGridView1.Enabled = False
         activeFields()
         deactivateButtons()
         clearFields()
