@@ -104,7 +104,14 @@ Public Class FormClientes
                 Comm.Parameters.AddWithValue("@registro", registro)
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                Dim mesagem = ex.Message
+                If mesagem.EndsWith("Clientes.nome") Then
+                    MessageBox.Show("Já existe um cliente com esse Nome / Razão social")
+                ElseIf mesagem.EndsWith("Clientes.identificador") Then
+                    MessageBox.Show("Já existe um cliente com esse CPF / CNPJ")
+                Else
+                    MessageBox.Show("Erro ao atualizar: " & ex.Message)
+                End If
             Finally
                 Conn.Close()
             End Try

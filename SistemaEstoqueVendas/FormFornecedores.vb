@@ -55,7 +55,14 @@ Public Class FormFornecedores
                 Comm.Parameters.AddWithValue("@email", email)
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                Dim mesagem = ex.Message
+                If mesagem.EndsWith("Fornecedores.nome") Then
+                    MessageBox.Show("Já existe um fornecedor com esse Nome / Razão social")
+                ElseIf mesagem.EndsWith("Fornecedores.identificador") Then
+                    MessageBox.Show("Já existe um fornecedor com esse CPF / CNPJ")
+                Else
+                    MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                End If
             Finally
                 Conn.Close()
             End Try
@@ -97,7 +104,14 @@ Public Class FormFornecedores
                 Comm.Parameters.AddWithValue("@registro", registro)
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                Dim mesagem = ex.Message
+                If mesagem.EndsWith("Fornecedores.nome") Then
+                    MessageBox.Show("Já existe um fornecedor com esse Nome / Razão social")
+                ElseIf mesagem.EndsWith("Fornecedores.identificador") Then
+                    MessageBox.Show("Já existe um fornecedor com esse CPF / CNPJ")
+                Else
+                    MessageBox.Show("Erro ao atualizar: " & ex.Message)
+                End If
             Finally
                 Conn.Close()
             End Try

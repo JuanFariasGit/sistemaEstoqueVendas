@@ -53,7 +53,14 @@ Public Class FormProdutos
                 Comm.Parameters.AddWithValue("@estoqueMaximo", estoqueMaximo)
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                Dim mesagem = ex.Message
+                If mesagem.EndsWith("Produtos.produto") Then
+                    MessageBox.Show("Já existe um produto com esse Nome")
+                ElseIf mesagem.EndsWith("Produtos.codigo") Then
+                    MessageBox.Show("Já existe um produto com esse Código")
+                Else
+                    MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                End If
             Finally
                 Conn.Close()
             End Try
@@ -92,7 +99,14 @@ Public Class FormProdutos
                 Comm.Parameters.AddWithValue("@registro", registro)
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao atualizar: " & ex.Message)
+                Dim mesagem = ex.Message
+                If mesagem.EndsWith("Produtos.produto") Then
+                    MessageBox.Show("Já existe um produto com esse Nome")
+                ElseIf mesagem.EndsWith("Produtos.codigo") Then
+                    MessageBox.Show("Já existe um produto com esse Código")
+                Else
+                    MessageBox.Show("Erro ao atualizar: " & ex.Message)
+                End If
             Finally
                 Conn.Close()
             End Try
