@@ -30,17 +30,16 @@ Partial Class FormPrincipal
         Me.EntradaESaídaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EntradaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaídaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ConsultarEstoqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RelatórioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.FornecedoresToolStripMenuItem, Me.ProdutosToolStripMenuItem1, Me.EntradaESaídaToolStripMenuItem, Me.ConsultarEstoqueToolStripMenuItem, Me.RelatórioToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DashboardToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.FornecedoresToolStripMenuItem, Me.ProdutosToolStripMenuItem1, Me.EntradaESaídaToolStripMenuItem, Me.RelatórioToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(593, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(525, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -87,12 +86,6 @@ Partial Class FormPrincipal
         Me.SaídaToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.SaídaToolStripMenuItem.Text = "Saídas"
         '
-        'ConsultarEstoqueToolStripMenuItem
-        '
-        Me.ConsultarEstoqueToolStripMenuItem.Name = "ConsultarEstoqueToolStripMenuItem"
-        Me.ConsultarEstoqueToolStripMenuItem.Size = New System.Drawing.Size(115, 20)
-        Me.ConsultarEstoqueToolStripMenuItem.Text = "Consultar Estoque"
-        '
         'RelatórioToolStripMenuItem
         '
         Me.RelatórioToolStripMenuItem.Name = "RelatórioToolStripMenuItem"
@@ -103,7 +96,7 @@ Partial Class FormPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(593, 475)
+        Me.ClientSize = New System.Drawing.Size(525, 470)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MainMenuStrip = Me.MenuStrip1
@@ -124,7 +117,6 @@ Partial Class FormPrincipal
     Friend WithEvents FornecedoresToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProdutosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents EntradaESaídaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ConsultarEstoqueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RelatórioToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EntradaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SaídaToolStripMenuItem As ToolStripMenuItem

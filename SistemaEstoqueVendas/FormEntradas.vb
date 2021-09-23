@@ -7,6 +7,7 @@ Public Class FormEntradas
     Private Sub FormEntradas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getFornecedores()
         getProdutos()
+        getEntradas()
     End Sub
     Private Sub getFornecedores()
         Conn.Open()
@@ -30,27 +31,131 @@ Public Class FormEntradas
         End Using
         Conn.Close()
     End Sub
+    Private Sub getEntradas()
+        DataGridView1.Rows.Clear()
+        Conn.Open()
+        Comm.CommandText = "SELECT registro, produto, quantidade, custo FROM Entradas"
+        Using Reader = Comm.ExecuteReader()
+            While Reader.Read()
+                Dim subtotal = Reader.Item("quantidade") * Reader.Item("custo")
+                DataGridView1.Rows.Add(Reader.Item("registro").ToString,
+                                       Reader.Item("produto").ToString,
+                                       Reader.Item("quantidade").ToString,
+                                       Reader.Item("custo").ToString,
+                                       "R$ " & Format(subtotal, "0.00"))
+            End While
+        End Using
+        Conn.Close()
+    End Sub
+    Private Sub searchEntrada()
+        Dim searchValue = tbPesquisar.Text.Trim()
+        DataGridView1.Rows.Clear()
+        Conn.Open()
+        Comm.CommandText = "SELECT registro, produto, quantidade, custo FROM Entradas WHERE produto LIKE @searchValue"
+        Comm.Parameters.AddWithValue("@searchValue", "%" & searchValue & "%")
+        Using Reader = Comm.ExecuteReader()
+            While Reader.Read()
+                Dim subtotal = Convert.ToInt32(Reader.Item("quantidade")) * Convert.ToDouble(Reader.Item("custo"))
+                DataGridView1.Rows.Add(Reader.Item("registro").ToString,
+                                       Reader.Item("produto").ToString,
+                                       Reader.Item("quantidade").ToString,
+                                       Reader.Item("custo").ToString,
+                                       "R$ " & Format(subtotal, "0.00"))
+            End While
+        End Using
+        Conn.Close()
+    End Sub
     Private Sub addEntrada()
-        If mkDataCompra.Text.Length > 0 And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbPreco.Text.Length > 0 Then
+        If mkDataCompra.Text.Length > 0 And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbCusto.Text.Length > 0 Then
             Dim dataCompra = mkDataCompra.Text.Trim
             Dim fornecedor = cbFornecedor.Text.Trim
             Dim produto = cbProduto.Text.Trim
             Dim dataVencimento = mkDataVencimento.Text.Trim
             Dim quantidade = tbQuandidade.Text.Trim
-            Dim preco = tbPreco.Text.Trim
+            Dim custo = tbCusto.Text.Trim
             Try
                 Conn.Open()
-                Comm.CommandText = "INSERT INTO Entradas VALUES (Null, @dataCompra, @fornecedor, @produto, @dataVencimento, @quantidade, @preco)"
+                Comm.CommandText = "INSERT INTO Entradas VALUES (Null, @produto, @fornecedor, @dataCompra, @dataVencimento, @quantidade, @custo)"
                 Comm.Parameters.AddWithValue("@dataCompra", dataCompra)
                 Comm.Parameters.AddWithValue("@fornecedor", fornecedor)
                 Comm.Parameters.AddWithValue("@produto", produto)
                 Comm.Parameters.AddWithValue("@dataVencimento", dataVencimento)
                 Comm.Parameters.AddWithValue("@quantidade", quantidade)
-                Comm.Parameters.AddWithValue("@preco", preco)
+                Comm.Parameters.AddWithValue("@custo", Replace(custo, ",", "."))
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
                 MessageBox.Show("Erro ao adicionar: " & ex.Message)
+            Finally
+                Conn.Close()
             End Try
+            btnCancelar.Enabled = False
+            btnSalvar.Enabled = False
+            DataGridView1.Enabled = True
+            clearFields()
+            deactivateFields()
+            activeButtons()
+            getEntradas()
+        Else
+            MessageBox.Show("Preacha os campos obrigatórios (*)")
+        End If
+    End Sub
+    Private Sub editEntrada()
+        If mkDataCompra.Text.Length > 0 And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbCusto.Text.Length > 0 Then
+            Dim dataCompra = mkDataCompra.Text.Trim
+            Dim fornecedor = cbFornecedor.Text.Trim
+            Dim produto = cbProduto.Text.Trim
+            Dim dataVencimento = mkDataVencimento.Text.Trim
+            Dim quantidade = tbQuandidade.Text.Trim
+            Dim custo = tbCusto.Text.Trim
+            Dim registro = tbRegistro.Text
+            Try
+                Conn.Open()
+                Comm.CommandText = "UPDATE Entradas SET produto = @produto, 
+                                    fornecedor = @fornecedor, 
+                                    dataCompra = @dataCompra, 
+                                    dataVencimento = @dataVencimento, 
+                                    quantidade = @quantidade, 
+                                    custo = @custo WHERE registro = @registro"
+                Comm.Parameters.AddWithValue("@dataCompra", dataCompra)
+                Comm.Parameters.AddWithValue("@fornecedor", fornecedor)
+                Comm.Parameters.AddWithValue("@produto", produto)
+                Comm.Parameters.AddWithValue("@dataVencimento", dataVencimento)
+                Comm.Parameters.AddWithValue("@quantidade", quantidade)
+                Comm.Parameters.AddWithValue("@custo", Replace(custo, ",", "."))
+                Comm.Parameters.AddWithValue("@registro", registro)
+                Comm.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show("Erro ao atualizar: " & ex.Message)
+            Finally
+                Conn.Close()
+            End Try
+            btnCancelar.Enabled = False
+            btnSalvar.Enabled = False
+            DataGridView1.Enabled = True
+            clearFields()
+            deactivateFields()
+            activeButtons()
+            getEntradas()
+        Else
+            MessageBox.Show("Preacha os campos obrigatórios (*)")
+        End If
+    End Sub
+    Private Sub delEntrada()
+        Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo)
+        If dialog = DialogResult.Yes Then
+            Dim registro = tbRegistro.Text
+            Try
+                Conn.Open()
+                Comm.CommandText = "DELETE FROM Entradas WHERE registro = @registro"
+                Comm.Parameters.AddWithValue("@registro", registro)
+                Comm.ExecuteNonQuery()
+            Catch ex As Exception
+                MessageBox.Show("Erro ao excluir: " & ex.Message)
+            Finally
+                Conn.Close()
+            End Try
+            clearFields()
+            getEntradas()
         End If
     End Sub
     Private Sub clearFields()
@@ -60,7 +165,7 @@ Public Class FormEntradas
         cbProduto.SelectedIndex = -1
         mkDataVencimento.Clear()
         tbQuandidade.Clear()
-        tbPreco.Clear()
+        tbCusto.Clear()
         mkDataCompra.Select()
     End Sub
     Private Sub activeFields()
@@ -70,7 +175,7 @@ Public Class FormEntradas
         mkDataVencimento.Enabled = True
         tbQuandidade.Enabled = True
         mkDataCompra.Enabled = True
-        tbPreco.Enabled = True
+        tbCusto.Enabled = True
     End Sub
     Private Sub deactivateFields()
         mkDataCompra.Enabled = False
@@ -79,7 +184,7 @@ Public Class FormEntradas
         mkDataVencimento.Enabled = False
         tbQuandidade.Enabled = False
         mkDataCompra.Enabled = False
-        tbPreco.Enabled = False
+        tbCusto.Enabled = False
     End Sub
     Private Sub activeButtons()
         btnAdicionar.Enabled = True
@@ -106,7 +211,7 @@ Public Class FormEntradas
                     cbProduto.Text = Reader.Item("produto").ToString
                     mkDataVencimento.Text = Reader.Item("dataVencimento").ToString
                     tbQuandidade.Text = Reader.Item("quantidade").ToString
-                    tbPreco.Text = Reader.Item("preco").ToString
+                    tbCusto.Text = Reader.Item("custo").ToString
                 End While
             End Using
             Conn.Close()
@@ -120,6 +225,16 @@ Public Class FormEntradas
         deactivateFields()
         activeButtons()
     End Sub
+    Private Sub btnExcluir_Click(sender As Object, e As EventArgs) Handles btnExcluir.Click
+        delEntrada()
+    End Sub
+    Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
+        op = "edit"
+        btnSalvar.Enabled = True
+        btnCancelar.Enabled = True
+        activeFields()
+        deactivateButtons()
+    End Sub
     Private Sub btnAdicionar_Click(sender As Object, e As EventArgs) Handles btnAdicionar.Click
         op = "add"
         btnSalvar.Enabled = True
@@ -129,10 +244,14 @@ Public Class FormEntradas
         deactivateButtons()
         clearFields()
     End Sub
-
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
         If op.Equals("add") Then
             addEntrada()
+        ElseIf op.Equals("edit") Then
+            editEntrada()
         End If
+    End Sub
+    Private Sub btnPesquisar_Click(sender As Object, e As EventArgs) Handles btnPesquisar.Click
+        searchEntrada()
     End Sub
 End Class

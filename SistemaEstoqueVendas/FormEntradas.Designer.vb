@@ -33,12 +33,12 @@ Partial Class FormEntradas
         Me.tbQuandidade = New System.Windows.Forms.TextBox()
         Me.tbQuantidade = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.tbPreco = New System.Windows.Forms.TextBox()
+        Me.tbCusto = New System.Windows.Forms.TextBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.registro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.produto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.quantidade = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.preco = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.custo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.subtotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnSalvar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
@@ -47,6 +47,9 @@ Partial Class FormEntradas
         Me.btnAdicionar = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.tbRegistro = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.btnPesquisar = New System.Windows.Forms.Button()
+        Me.tbPesquisar = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -150,28 +153,28 @@ Partial Class FormEntradas
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(11, 279)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(87, 13)
+        Me.Label5.Size = New System.Drawing.Size(86, 13)
         Me.Label5.TabIndex = 11
-        Me.Label5.Text = "Preço Unitário:(*)"
+        Me.Label5.Text = "Custo Unitário:(*)"
         '
-        'tbPreco
+        'tbCusto
         '
-        Me.tbPreco.Enabled = False
-        Me.tbPreco.Location = New System.Drawing.Point(13, 295)
-        Me.tbPreco.Name = "tbPreco"
-        Me.tbPreco.Size = New System.Drawing.Size(100, 20)
-        Me.tbPreco.TabIndex = 12
+        Me.tbCusto.Enabled = False
+        Me.tbCusto.Location = New System.Drawing.Point(13, 295)
+        Me.tbCusto.Name = "tbCusto"
+        Me.tbCusto.Size = New System.Drawing.Size(100, 20)
+        Me.tbCusto.TabIndex = 12
         '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.registro, Me.produto, Me.quantidade, Me.preco, Me.subtotal})
-        Me.DataGridView1.Location = New System.Drawing.Point(339, 69)
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.registro, Me.produto, Me.quantidade, Me.custo, Me.subtotal})
+        Me.DataGridView1.Location = New System.Drawing.Point(339, 53)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(599, 313)
+        Me.DataGridView1.Size = New System.Drawing.Size(599, 329)
         Me.DataGridView1.TabIndex = 13
         '
         'registro
@@ -193,11 +196,11 @@ Partial Class FormEntradas
         Me.quantidade.Name = "quantidade"
         Me.quantidade.ReadOnly = True
         '
-        'preco
+        'custo
         '
-        Me.preco.HeaderText = "Preço Unitário"
-        Me.preco.Name = "preco"
-        Me.preco.ReadOnly = True
+        Me.custo.HeaderText = "Custo Unitário"
+        Me.custo.Name = "custo"
+        Me.custo.ReadOnly = True
         '
         'subtotal
         '
@@ -269,11 +272,40 @@ Partial Class FormEntradas
         Me.tbRegistro.Size = New System.Drawing.Size(100, 20)
         Me.tbRegistro.TabIndex = 26
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(429, 8)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(47, 13)
+        Me.Label8.TabIndex = 27
+        Me.Label8.Text = "Produto:"
+        '
+        'btnPesquisar
+        '
+        Me.btnPesquisar.Location = New System.Drawing.Point(773, 23)
+        Me.btnPesquisar.Name = "btnPesquisar"
+        Me.btnPesquisar.Size = New System.Drawing.Size(75, 23)
+        Me.btnPesquisar.TabIndex = 29
+        Me.btnPesquisar.Text = "Pesquisar"
+        Me.btnPesquisar.UseVisualStyleBackColor = True
+        '
+        'tbPesquisar
+        '
+        Me.tbPesquisar.Location = New System.Drawing.Point(432, 25)
+        Me.tbPesquisar.Name = "tbPesquisar"
+        Me.tbPesquisar.Size = New System.Drawing.Size(335, 20)
+        Me.tbPesquisar.TabIndex = 28
+        Me.tbPesquisar.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
         'FormEntradas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(950, 408)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.btnPesquisar)
+        Me.Controls.Add(Me.tbPesquisar)
         Me.Controls.Add(Me.tbRegistro)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.btnSalvar)
@@ -283,7 +315,7 @@ Partial Class FormEntradas
         Me.Controls.Add(Me.btnAdicionar)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.tbPreco)
+        Me.Controls.Add(Me.tbCusto)
         Me.Controls.Add(Me.tbQuantidade)
         Me.Controls.Add(Me.tbQuandidade)
         Me.Controls.Add(Me.Label4)
@@ -316,7 +348,7 @@ Partial Class FormEntradas
     Friend WithEvents tbQuandidade As TextBox
     Friend WithEvents tbQuantidade As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents tbPreco As TextBox
+    Friend WithEvents tbCusto As TextBox
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents btnSalvar As Button
     Friend WithEvents btnCancelar As Button
@@ -328,6 +360,9 @@ Partial Class FormEntradas
     Friend WithEvents registro As DataGridViewTextBoxColumn
     Friend WithEvents produto As DataGridViewTextBoxColumn
     Friend WithEvents quantidade As DataGridViewTextBoxColumn
-    Friend WithEvents preco As DataGridViewTextBoxColumn
+    Friend WithEvents custo As DataGridViewTextBoxColumn
     Friend WithEvents subtotal As DataGridViewTextBoxColumn
+    Friend WithEvents Label8 As Label
+    Friend WithEvents btnPesquisar As Button
+    Friend WithEvents tbPesquisar As TextBox
 End Class
