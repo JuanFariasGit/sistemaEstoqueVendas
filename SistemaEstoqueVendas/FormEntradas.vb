@@ -55,7 +55,7 @@ Public Class FormEntradas
         Comm.Parameters.AddWithValue("@searchValue", "%" & searchValue & "%")
         Using Reader = Comm.ExecuteReader()
             While Reader.Read()
-                Dim subtotal = Convert.ToInt32(Reader.Item("quantidade")) * Convert.ToDouble(Reader.Item("custo"))
+                Dim subtotal = Reader.Item("quantidade") * Reader.Item("custo")
                 DataGridView1.Rows.Add(Reader.Item("registro").ToString,
                                        Reader.Item("produto").ToString,
                                        Reader.Item("quantidade").ToString,
