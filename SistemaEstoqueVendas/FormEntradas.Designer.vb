@@ -331,7 +331,7 @@ Partial Class FormEntradas
         Me.MinimizeBox = False
         Me.Name = "FormEntradas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Entradas"
+        Me.Text = "Entradas (compras)"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

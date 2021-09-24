@@ -1,14 +1,18 @@
 ﻿Public Class FormPrincipal
     Private Sub ClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientesToolStripMenuItem.Click
-        FormClientes.ShowDialog()
+        Dim formClientes = New FormClientes()
+        formClientes.ShowDialog()
     End Sub
     Private Sub FornecedoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FornecedoresToolStripMenuItem.Click
-        FormFornecedores.ShowDialog()
+        Dim formFornecedores = New FormFornecedores()
+        formFornecedores.ShowDialog()
     End Sub
     Private Sub ProdutosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ProdutosToolStripMenuItem1.Click
-        FormProdutos.ShowDialog()
+        Dim formProdutos = New FormProdutos()
+        formProdutos.ShowDialog()
     End Sub
     Private Sub EntradaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EntradaToolStripMenuItem.Click
-        FormEntradas.ShowDialog()
+        Dim formEntradas = New FormEntradas()
+        formEntradas.ShowDialog()
     End Sub
 End Class

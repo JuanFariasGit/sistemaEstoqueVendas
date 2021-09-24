@@ -229,20 +229,24 @@ Public Class FormEntradas
         delEntrada()
     End Sub
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
-        op = "edit"
-        btnSalvar.Enabled = True
-        btnCancelar.Enabled = True
-        activeFields()
-        deactivateButtons()
+        If tbRegistro.Text.Length > 0 Then
+            op = "edit"
+            btnSalvar.Enabled = True
+            btnCancelar.Enabled = True
+            activeFields()
+            deactivateButtons()
+        Else
+            MessageBox.Show("Selecione um cliente para editar")
+        End If
     End Sub
     Private Sub btnAdicionar_Click(sender As Object, e As EventArgs) Handles btnAdicionar.Click
         op = "add"
         btnSalvar.Enabled = True
         btnCancelar.Enabled = True
         DataGridView1.Enabled = False
+        clearFields()
         activeFields()
         deactivateButtons()
-        clearFields()
     End Sub
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click
         If op.Equals("add") Then
