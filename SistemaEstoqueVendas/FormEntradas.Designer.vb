@@ -24,12 +24,10 @@ Partial Class FormEntradas
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cbFornecedor = New System.Windows.Forms.ComboBox()
-        Me.mkDataCompra = New System.Windows.Forms.MaskedTextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cbProduto = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.mkDataVencimento = New System.Windows.Forms.MaskedTextBox()
         Me.tbQuandidade = New System.Windows.Forms.TextBox()
         Me.tbQuantidade = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -49,7 +47,9 @@ Partial Class FormEntradas
         Me.tbRegistro = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.btnPesquisar = New System.Windows.Forms.Button()
-        Me.tbPesquisar = New System.Windows.Forms.TextBox()
+        Me.mkDataCompra = New System.Windows.Forms.MaskedTextBox()
+        Me.mkDataVencimento = New System.Windows.Forms.MaskedTextBox()
+        Me.cbProdutoPesquisar = New System.Windows.Forms.ComboBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -70,18 +70,6 @@ Partial Class FormEntradas
         Me.cbFornecedor.Name = "cbFornecedor"
         Me.cbFornecedor.Size = New System.Drawing.Size(307, 21)
         Me.cbFornecedor.TabIndex = 4
-        '
-        'mkDataCompra
-        '
-        Me.mkDataCompra.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.mkDataCompra.Enabled = False
-        Me.mkDataCompra.Location = New System.Drawing.Point(12, 69)
-        Me.mkDataCompra.Mask = "00/00/0000"
-        Me.mkDataCompra.Name = "mkDataCompra"
-        Me.mkDataCompra.Size = New System.Drawing.Size(100, 20)
-        Me.mkDataCompra.TabIndex = 2
-        Me.mkDataCompra.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.mkDataCompra.ValidatingType = GetType(Date)
         '
         'Label2
         '
@@ -118,18 +106,6 @@ Partial Class FormEntradas
         Me.Label4.Size = New System.Drawing.Size(106, 13)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "Data de vencimento:"
-        '
-        'mkDataVencimento
-        '
-        Me.mkDataVencimento.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.mkDataVencimento.Enabled = False
-        Me.mkDataVencimento.Location = New System.Drawing.Point(13, 205)
-        Me.mkDataVencimento.Mask = "00/00/0000"
-        Me.mkDataVencimento.Name = "mkDataVencimento"
-        Me.mkDataVencimento.Size = New System.Drawing.Size(100, 20)
-        Me.mkDataVencimento.TabIndex = 8
-        Me.mkDataVencimento.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
-        Me.mkDataVencimento.ValidatingType = GetType(Date)
         '
         'tbQuandidade
         '
@@ -290,22 +266,44 @@ Partial Class FormEntradas
         Me.btnPesquisar.Text = "Pesquisar"
         Me.btnPesquisar.UseVisualStyleBackColor = True
         '
-        'tbPesquisar
+        'mkDataCompra
         '
-        Me.tbPesquisar.Location = New System.Drawing.Point(432, 25)
-        Me.tbPesquisar.Name = "tbPesquisar"
-        Me.tbPesquisar.Size = New System.Drawing.Size(335, 20)
-        Me.tbPesquisar.TabIndex = 28
-        Me.tbPesquisar.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.mkDataCompra.Enabled = False
+        Me.mkDataCompra.Location = New System.Drawing.Point(12, 69)
+        Me.mkDataCompra.Mask = "00/00/0000"
+        Me.mkDataCompra.Name = "mkDataCompra"
+        Me.mkDataCompra.Size = New System.Drawing.Size(100, 20)
+        Me.mkDataCompra.TabIndex = 2
+        Me.mkDataCompra.ValidatingType = GetType(Date)
+        '
+        'mkDataVencimento
+        '
+        Me.mkDataVencimento.Enabled = False
+        Me.mkDataVencimento.Location = New System.Drawing.Point(12, 205)
+        Me.mkDataVencimento.Mask = "00/00/0000"
+        Me.mkDataVencimento.Name = "mkDataVencimento"
+        Me.mkDataVencimento.Size = New System.Drawing.Size(100, 20)
+        Me.mkDataVencimento.TabIndex = 8
+        Me.mkDataVencimento.ValidatingType = GetType(Date)
+        '
+        'cbProdutoPesquisar
+        '
+        Me.cbProdutoPesquisar.FormattingEnabled = True
+        Me.cbProdutoPesquisar.Location = New System.Drawing.Point(432, 23)
+        Me.cbProdutoPesquisar.Name = "cbProdutoPesquisar"
+        Me.cbProdutoPesquisar.Size = New System.Drawing.Size(335, 21)
+        Me.cbProdutoPesquisar.TabIndex = 28
         '
         'FormEntradas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(950, 408)
+        Me.Controls.Add(Me.cbProdutoPesquisar)
+        Me.Controls.Add(Me.mkDataVencimento)
+        Me.Controls.Add(Me.mkDataCompra)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.btnPesquisar)
-        Me.Controls.Add(Me.tbPesquisar)
         Me.Controls.Add(Me.tbRegistro)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.btnSalvar)
@@ -319,11 +317,9 @@ Partial Class FormEntradas
         Me.Controls.Add(Me.tbQuantidade)
         Me.Controls.Add(Me.tbQuandidade)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.mkDataVencimento)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cbProduto)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.mkDataCompra)
         Me.Controls.Add(Me.cbFornecedor)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -331,7 +327,7 @@ Partial Class FormEntradas
         Me.MinimizeBox = False
         Me.Name = "FormEntradas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Entradas (compras)"
+        Me.Text = "Entradas (Compras)"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -339,12 +335,10 @@ Partial Class FormEntradas
     End Sub
     Friend WithEvents Label1 As Label
     Friend WithEvents cbFornecedor As ComboBox
-    Friend WithEvents mkDataCompra As MaskedTextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents cbProduto As ComboBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents mkDataVencimento As MaskedTextBox
     Friend WithEvents tbQuandidade As TextBox
     Friend WithEvents tbQuantidade As Label
     Friend WithEvents Label5 As Label
@@ -364,5 +358,7 @@ Partial Class FormEntradas
     Friend WithEvents subtotal As DataGridViewTextBoxColumn
     Friend WithEvents Label8 As Label
     Friend WithEvents btnPesquisar As Button
-    Friend WithEvents tbPesquisar As TextBox
+    Friend WithEvents mkDataCompra As MaskedTextBox
+    Friend WithEvents mkDataVencimento As MaskedTextBox
+    Friend WithEvents cbProdutoPesquisar As ComboBox
 End Class

@@ -6,7 +6,6 @@ Public Class FormProdutos
     Private Comm As New SQLiteCommand(Conn)
     Private Sub FormProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getProdutos()
-        tbPesquisar.Select()
     End Sub
     Private Sub getProdutos()
         DataGridView1.Rows.Clear()
@@ -146,7 +145,6 @@ Public Class FormProdutos
         tbUnidadeMedida.Clear()
         tbEstoqueMinimo.Clear()
         tbEstoqueMaximo.Clear()
-        tbCodigo.Select()
     End Sub
     Private Sub activeFields()
         tbCodigo.Enabled = True
@@ -154,6 +152,7 @@ Public Class FormProdutos
         tbUnidadeMedida.Enabled = True
         tbEstoqueMinimo.Enabled = True
         tbEstoqueMaximo.Enabled = True
+        tbCodigo.Focus()
     End Sub
     Private Sub deactivateFields()
         tbCodigo.Enabled = False

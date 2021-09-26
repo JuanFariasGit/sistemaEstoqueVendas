@@ -24,9 +24,11 @@ Public Class FormEntradas
         Conn.Open()
         Comm.CommandText = "SELECT produto FROM Produtos"
         cbProduto.Items.Clear()
+        cbProdutoPesquisar.Items.Clear()
         Using Reader = Comm.ExecuteReader()
             While Reader.Read()
                 cbProduto.Items.Add(Reader.Item("produto").ToString)
+                cbProdutoPesquisar.Items.Add(Reader.Item("produto").ToString)
             End While
         End Using
         Conn.Close()
@@ -48,7 +50,7 @@ Public Class FormEntradas
         Conn.Close()
     End Sub
     Private Sub searchEntrada()
-        Dim searchValue = tbPesquisar.Text.Trim()
+        Dim searchValue = cbProdutoPesquisar.Text
         DataGridView1.Rows.Clear()
         Conn.Open()
         Comm.CommandText = "SELECT registro, produto, quantidade, custo FROM Entradas WHERE produto LIKE @searchValue"
@@ -67,10 +69,10 @@ Public Class FormEntradas
     End Sub
     Private Sub addEntrada()
         If mkDataCompra.Text.Length > 0 And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbCusto.Text.Length > 0 Then
-            Dim dataCompra = mkDataCompra.Text.Trim
-            Dim fornecedor = cbFornecedor.Text.Trim
-            Dim produto = cbProduto.Text.Trim
-            Dim dataVencimento = mkDataVencimento.Text.Trim
+            Dim dataCompra = String.Join("-", mkDataCompra.Text.Split("/").Reverse())
+            Dim fornecedor = cbFornecedor.Text
+            Dim produto = cbProduto.Text
+            Dim dataVencimento = String.Join("-", mkDataVencimento.Text.Split("/").Reverse())
             Dim quantidade = tbQuandidade.Text.Trim
             Dim custo = tbCusto.Text.Trim
             Try
@@ -101,10 +103,10 @@ Public Class FormEntradas
     End Sub
     Private Sub editEntrada()
         If mkDataCompra.Text.Length > 0 And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbCusto.Text.Length > 0 Then
-            Dim dataCompra = mkDataCompra.Text.Trim
-            Dim fornecedor = cbFornecedor.Text.Trim
-            Dim produto = cbProduto.Text.Trim
-            Dim dataVencimento = mkDataVencimento.Text.Trim
+            Dim dataCompra = String.Join("-", mkDataCompra.Text.Split("/").Reverse())
+            Dim fornecedor = cbFornecedor.Text
+            Dim produto = cbProduto.Text
+            Dim dataVencimento = String.Join("-", mkDataVencimento.Text.Split("/").Reverse())
             Dim quantidade = tbQuandidade.Text.Trim
             Dim custo = tbCusto.Text.Trim
             Dim registro = tbRegistro.Text
@@ -166,7 +168,6 @@ Public Class FormEntradas
         mkDataVencimento.Clear()
         tbQuandidade.Clear()
         tbCusto.Clear()
-        mkDataCompra.Select()
     End Sub
     Private Sub activeFields()
         mkDataCompra.Enabled = True
@@ -176,6 +177,7 @@ Public Class FormEntradas
         tbQuandidade.Enabled = True
         mkDataCompra.Enabled = True
         tbCusto.Enabled = True
+        mkDataCompra.Focus()
     End Sub
     Private Sub deactivateFields()
         mkDataCompra.Enabled = False
@@ -205,11 +207,13 @@ Public Class FormEntradas
             Comm.Parameters.AddWithValue("@registro", registro)
             Using Reader = Comm.ExecuteReader()
                 While Reader.Read()
+                    Dim dataCompra = String.Join("/", Reader.Item("dataCompra").ToString.Split("-").Reverse())
+                    Dim dataVencimento = String.Join("/", Reader.Item("dataVencimento").ToString.Split("-").Reverse())
                     tbRegistro.Text = Reader.Item("registro").ToString()
-                    mkDataCompra.Text = Reader.Item("dataCompra").ToString()
+                    mkDataCompra.Text = dataCompra
                     cbFornecedor.Text = Reader.Item("fornecedor").ToString
                     cbProduto.Text = Reader.Item("produto").ToString
-                    mkDataVencimento.Text = Reader.Item("dataVencimento").ToString
+                    mkDataVencimento.Text = dataVencimento
                     tbQuandidade.Text = Reader.Item("quantidade").ToString
                     tbCusto.Text = Reader.Item("custo").ToString
                 End While

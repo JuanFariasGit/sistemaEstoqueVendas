@@ -15,4 +15,8 @@
         Dim formEntradas = New FormEntradas()
         formEntradas.ShowDialog()
     End Sub
+    Private Sub EntradasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EntradasToolStripMenuItem.Click
+        Dim formRelatorioEntradas = New FormRelatorioEntradas()
+        formRelatorioEntradas.ShowDialog()
+    End Sub
 End Class

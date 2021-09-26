@@ -6,7 +6,6 @@ Public Class FormClientes
     Private Comm As New SQLiteCommand(Conn)
     Private Sub FormClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getClientes()
-        tbPesquisar.Select()
     End Sub
     Private Sub getClientes()
         DataGridView1.Rows.Clear()
@@ -152,7 +151,6 @@ Public Class FormClientes
         mkTelefone.Clear()
         mkCelular.Clear()
         tbEmail.Clear()
-        tbNome.Select()
     End Sub
     Private Sub activeFields()
         tbNome.Enabled = True
@@ -161,6 +159,7 @@ Public Class FormClientes
         mkTelefone.Enabled = True
         mkCelular.Enabled = True
         tbEmail.Enabled = True
+        tbNome.Focus()
     End Sub
     Private Sub deactivateFields()
         tbNome.Enabled = False

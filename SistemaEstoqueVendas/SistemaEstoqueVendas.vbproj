@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -78,6 +79,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormRelatorioEntradas.Designer.vb">
+      <DependentUpon>FormRelatorioEntradas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRelatorioEntradas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Globais.vb" />
     <Compile Include="FormEntradas.Designer.vb">
       <DependentUpon>FormEntradas.vb</DependentUpon>
@@ -141,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormClientes.resx">
       <DependentUpon>FormClientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRelatorioEntradas.resx">
+      <DependentUpon>FormRelatorioEntradas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <CustomToolNamespace>My.Resources</CustomToolNamespace>

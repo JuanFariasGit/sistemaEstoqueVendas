@@ -210,7 +210,6 @@ Partial Class FormFornecedores
         Me.mkTelefone.Name = "mkTelefone"
         Me.mkTelefone.Size = New System.Drawing.Size(100, 20)
         Me.mkTelefone.TabIndex = 10
-        Me.mkTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         '
         'Label5
         '
@@ -237,7 +236,6 @@ Partial Class FormFornecedores
         Me.mkCelular.Name = "mkCelular"
         Me.mkCelular.Size = New System.Drawing.Size(100, 20)
         Me.mkCelular.TabIndex = 12
-        Me.mkCelular.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         '
         'tbEndereco
         '
