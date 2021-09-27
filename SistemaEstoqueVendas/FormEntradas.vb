@@ -43,7 +43,7 @@ Public Class FormEntradas
                 DataGridView1.Rows.Add(Reader.Item("registro").ToString,
                                        Reader.Item("produto").ToString,
                                        Reader.Item("quantidade").ToString,
-                                       Reader.Item("custo").ToString,
+                                       "R$ " & Reader.Item("custo").ToString,
                                        "R$ " & Format(subtotal, "0.00"))
             End While
         End Using
@@ -61,7 +61,7 @@ Public Class FormEntradas
                 DataGridView1.Rows.Add(Reader.Item("registro").ToString,
                                        Reader.Item("produto").ToString,
                                        Reader.Item("quantidade").ToString,
-                                       Reader.Item("custo").ToString,
+                                       "R$ " & Reader.Item("custo").ToString,
                                        "R$ " & Format(subtotal, "0.00"))
             End While
         End Using

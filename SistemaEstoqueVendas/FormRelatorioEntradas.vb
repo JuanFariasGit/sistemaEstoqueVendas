@@ -1,4 +1,9 @@
 ﻿Imports System.Data.SQLite
+Imports iTextSharp
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
+Imports System.IO
+Imports System
 Public Class FormRelatorioEntradas
     Private Gl As New Globais
     Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString())
@@ -41,8 +46,8 @@ Public Class FormRelatorioEntradas
         Dim dataFinal = String.Join("-", mkDataFinal.Text.Split("/").Reverse())
         Conn.Open()
         Comm.CommandText = "SELECT * FROM Entradas WHERE dataCompra >= @dataInicio AND dataCompra <= @dataFinal"
-        Comm.Parameters.AddWithValue("@fornecedor", fornecedor)
-        Comm.Parameters.AddWithValue("@produto", produto)
+        Comm.Parameters.AddWithValue("@dataInicio", dataInicio)
+        Comm.Parameters.AddWithValue("@dataFinal", dataFinal)
         Using Reader = Comm.ExecuteReader()
             While Reader.Read()
                 Dim subtotal = Reader.Item("quantidade") * Reader.Item("custo")
@@ -56,7 +61,7 @@ Public Class FormRelatorioEntradas
                 items(3) = Reader.Item("produto").ToString
                 items(4) = dataVencimento
                 items(5) = Reader.Item("quantidade").ToString
-                items(6) = Reader.Item("custo").ToString
+                items(6) = "R$ " & Reader.Item("custo").ToString
                 items(7) = "R$ " & Format(subtotal, "0.00")
 
                 Dim l As New ListViewItem(items)
@@ -65,9 +70,73 @@ Public Class FormRelatorioEntradas
         End Using
         Conn.Close()
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btPesquisar_Click(sender As Object, e As EventArgs) Handles btPesquisar.Click
         getRegistrosCompras()
         getTotalEmComprasPeriodo()
         getEntradas()
+    End Sub
+    Private Sub btGerarPDF_Click(sender As Object, e As EventArgs) Handles btGerarPDF.Click
+        Dim sfd As New SaveFileDialog
+        sfd.Filter = "Pdf File |*.pdf"
+        If (sfd.ShowDialog().Equals(DialogResult.OK)) Then
+            Dim arquivo = New FileStream(sfd.FileName, FileMode.Create)
+            Dim doc = New Document(PageSize.A4)
+            Dim wri = PdfWriter.GetInstance(doc, arquivo)
+
+            Dim f1 = New iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 20, iTextSharp.text.Font.BOLD, BaseColor.BLUE)
+            Dim p1 = New Paragraph("RELATÓRIO DE ENTRADAS (COMPRAS)", f1)
+
+            p1.Alignment = Element.ALIGN_CENTER
+
+            Dim t As New PdfPTable(8)
+
+            Dim f2 = New iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 8)
+
+            t.SpacingBefore = 20
+            t.WidthPercentage = 100
+
+            t.AddCell(New Paragraph("Registro", f2))
+            t.AddCell(New Paragraph("Data da Compra", f2))
+            t.AddCell(New Paragraph("Fornecedor", f2))
+            t.AddCell(New Paragraph("Produto", f2))
+            t.AddCell(New Paragraph("Data de Vencimento", f2))
+            t.AddCell(New Paragraph("Quantidade", f2))
+            t.AddCell(New Paragraph("Custo Unitário", f2))
+            t.AddCell(New Paragraph("Subtotal", f2))
+
+            Dim dataInicio = String.Join("-", mkDataInicio.Text.Split("/").Reverse())
+            Dim dataFinal = String.Join("-", mkDataFinal.Text.Split("/").Reverse())
+
+            Conn.Open()
+            Comm.CommandText = "SELECT * FROM Entradas WHERE dataCompra >= @dataInicio AND dataCompra <= @dataFinal"
+            Comm.Parameters.AddWithValue("@dataInicio", dataInicio)
+            Comm.Parameters.AddWithValue("@dataFinal", dataFinal)
+
+            Using Reader = Comm.ExecuteReader()
+                While Reader.Read()
+                    Dim subtotal = Reader.Item("quantidade") * Reader.Item("custo")
+                    Dim dataCompra = String.Join("/", Reader.Item("dataCompra").ToString.Split("-").Reverse())
+                    Dim dataVencimento = String.Join("/", Reader.Item("dataVencimento").ToString.Split("-").Reverse())
+                    Dim items(8) As String
+
+                    t.AddCell(New Paragraph(Reader.Item("registro").ToString, f2))
+                    t.AddCell(New Paragraph(dataCompra, f2))
+                    t.AddCell(New Paragraph(Reader.Item("fornecedor").ToString, f2))
+                    t.AddCell(New Paragraph(Reader.Item("produto").ToString, f2))
+                    t.AddCell(New Paragraph(dataVencimento, f2))
+                    t.AddCell(New Paragraph(Reader.Item("quantidade").ToString, f2))
+                    t.AddCell(New Paragraph("R$ " & Reader.Item("custo").ToString, f2))
+                    t.AddCell(New Paragraph("R$ " & Format(subtotal, "0.00"), f2))
+                End While
+            End Using
+            Conn.Close()
+
+            doc.Open()
+            doc.Add(p1)
+            doc.Add(t)
+            doc.Close()
+
+            MessageBox.Show("PDF exportado com sucesso")
+        End If
     End Sub
 End Class

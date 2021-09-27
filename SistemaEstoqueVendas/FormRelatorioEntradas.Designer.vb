@@ -26,7 +26,7 @@ Partial Class FormRelatorioEntradas
         Me.Label2 = New System.Windows.Forms.Label()
         Me.mkDataInicio = New System.Windows.Forms.MaskedTextBox()
         Me.mkDataFinal = New System.Windows.Forms.MaskedTextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btPesquisar = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lRegistrosCompras = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -42,6 +42,7 @@ Partial Class FormRelatorioEntradas
         Me.quantidade = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.custo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.subtotal = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btGerarPDF = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -82,14 +83,14 @@ Partial Class FormRelatorioEntradas
         Me.mkDataFinal.TabIndex = 4
         Me.mkDataFinal.ValidatingType = GetType(Date)
         '
-        'Button1
+        'btPesquisar
         '
-        Me.Button1.Location = New System.Drawing.Point(360, 51)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 9
-        Me.Button1.Text = "Pesquisar"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btPesquisar.Location = New System.Drawing.Point(325, 51)
+        Me.btPesquisar.Name = "btPesquisar"
+        Me.btPesquisar.Size = New System.Drawing.Size(75, 23)
+        Me.btPesquisar.TabIndex = 9
+        Me.btPesquisar.Text = "Pesquisar"
+        Me.btPesquisar.UseVisualStyleBackColor = True
         '
         'Panel1
         '
@@ -202,15 +203,25 @@ Partial Class FormRelatorioEntradas
         Me.subtotal.Text = "Subtotal"
         Me.subtotal.Width = 101
         '
+        'btGerarPDF
+        '
+        Me.btGerarPDF.Location = New System.Drawing.Point(406, 51)
+        Me.btGerarPDF.Name = "btGerarPDF"
+        Me.btGerarPDF.Size = New System.Drawing.Size(75, 23)
+        Me.btGerarPDF.TabIndex = 13
+        Me.btGerarPDF.Text = "Exporta PDF"
+        Me.btGerarPDF.UseVisualStyleBackColor = True
+        '
         'FormRelatorioEntradas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(827, 425)
+        Me.ClientSize = New System.Drawing.Size(827, 462)
+        Me.Controls.Add(Me.btGerarPDF)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btPesquisar)
         Me.Controls.Add(Me.mkDataFinal)
         Me.Controls.Add(Me.mkDataInicio)
         Me.Controls.Add(Me.Label2)
@@ -231,7 +242,7 @@ Partial Class FormRelatorioEntradas
     Friend WithEvents Label2 As Label
     Friend WithEvents mkDataInicio As MaskedTextBox
     Friend WithEvents mkDataFinal As MaskedTextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btPesquisar As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label4 As Label
     Friend WithEvents Panel2 As Panel
@@ -247,4 +258,5 @@ Partial Class FormRelatorioEntradas
     Friend WithEvents quantidade As ColumnHeader
     Friend WithEvents custo As ColumnHeader
     Friend WithEvents subtotal As ColumnHeader
+    Friend WithEvents btGerarPDF As Button
 End Class
