@@ -228,6 +228,7 @@ Public Class FormEntradas
         clearFields()
         deactivateFields()
         activeButtons()
+        getEntradas()
     End Sub
     Private Sub btnExcluir_Click(sender As Object, e As EventArgs) Handles btnExcluir.Click
         delEntrada()

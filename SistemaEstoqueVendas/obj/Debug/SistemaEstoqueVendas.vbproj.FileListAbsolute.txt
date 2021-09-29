@@ -21,3 +21,4 @@ C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\
 C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\itextsharp.dll
 C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\bin\Debug\itextsharp.xml
+C:\Users\Juan Farias\projetos\VB .NET\SistemaEstoqueVendas\SistemaEstoqueVendas\obj\Debug\SistemaEstoqueVendas.FormSaidas.resources

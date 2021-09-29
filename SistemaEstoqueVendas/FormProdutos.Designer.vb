@@ -216,7 +216,7 @@ Partial Class FormProdutos
         Me.DataGridView1.Location = New System.Drawing.Point(346, 56)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(445, 198)
+        Me.DataGridView1.Size = New System.Drawing.Size(445, 181)
         Me.DataGridView1.TabIndex = 20
         '
         'registro
@@ -267,7 +267,7 @@ Partial Class FormProdutos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(797, 269)
+        Me.ClientSize = New System.Drawing.Size(802, 248)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.btnPesquisar)
         Me.Controls.Add(Me.tbPesquisar)

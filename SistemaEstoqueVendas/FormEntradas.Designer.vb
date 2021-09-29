@@ -298,7 +298,7 @@ Partial Class FormEntradas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(950, 408)
+        Me.ClientSize = New System.Drawing.Size(950, 390)
         Me.Controls.Add(Me.cbProdutoPesquisar)
         Me.Controls.Add(Me.mkDataVencimento)
         Me.Controls.Add(Me.mkDataCompra)

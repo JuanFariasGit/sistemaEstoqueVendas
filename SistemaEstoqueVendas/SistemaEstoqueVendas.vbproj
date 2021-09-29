@@ -85,6 +85,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormSaidas.Designer.vb">
+      <DependentUpon>FormSaidas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSaidas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRelatorioEntradas.Designer.vb">
       <DependentUpon>FormRelatorioEntradas.vb</DependentUpon>
     </Compile>
@@ -140,6 +146,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormSaidas.resx">
+      <DependentUpon>FormSaidas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEntradas.resx">
       <DependentUpon>FormEntradas.vb</DependentUpon>
     </EmbeddedResource>

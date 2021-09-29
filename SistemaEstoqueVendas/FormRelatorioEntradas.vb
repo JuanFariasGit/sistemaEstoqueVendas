@@ -45,24 +45,26 @@ Public Class FormRelatorioEntradas
         Dim dataInicio = String.Join("-", mkDataInicio.Text.Split("/").Reverse())
         Dim dataFinal = String.Join("-", mkDataFinal.Text.Split("/").Reverse())
         Conn.Open()
-        Comm.CommandText = "SELECT * FROM Entradas WHERE dataCompra >= @dataInicio AND dataCompra <= @dataFinal"
+        Comm.CommandText = "SELECT p.codigo, f.identificador, e.fornecedor, e.produto, e.dataCompra, e.dataVencimento , e.quantidade, e.custo FROM Entradas e 
+                            INNER JOIN Produtos p ON p.produto = e.produto INNER JOIN Fornecedores f ON e.fornecedor = f.nome WHERE e.dataCompra >= @dataInicio AND e.dataCompra <= @dataFinal"
         Comm.Parameters.AddWithValue("@dataInicio", dataInicio)
         Comm.Parameters.AddWithValue("@dataFinal", dataFinal)
         Using Reader = Comm.ExecuteReader()
             While Reader.Read()
-                Dim subtotal = Reader.Item("quantidade") * Reader.Item("custo")
+                Dim total = Reader.Item("quantidade") * Reader.Item("custo")
                 Dim dataCompra = String.Join("/", Reader.Item("dataCompra").ToString.Split("-").Reverse())
                 Dim dataVencimento = String.Join("/", Reader.Item("dataVencimento").ToString.Split("-").Reverse())
                 Dim items(8) As String
 
-                items(0) = Reader.Item("registro").ToString
-                items(1) = dataCompra
-                items(2) = Reader.Item("fornecedor").ToString
-                items(3) = Reader.Item("produto").ToString
-                items(4) = dataVencimento
-                items(5) = Reader.Item("quantidade").ToString
-                items(6) = "R$ " & Reader.Item("custo").ToString
-                items(7) = "R$ " & Format(subtotal, "0.00")
+                items(0) = dataCompra
+                items(1) = Reader.Item("codigo").ToString
+                items(2) = Reader.Item("produto").ToString
+                items(3) = dataVencimento
+                items(4) = Reader.Item("quantidade").ToString
+                items(5) = "R$ " & Reader.Item("custo").ToString
+                items(6) = "R$ " & Format(total, "0.00")
+                items(7) = Reader.Item("fornecedor").ToString
+                items(8) = Reader.Item("identificador").ToString
 
                 Dim l As New ListViewItem(items)
                 ListView1.Items.Add(l)
@@ -88,45 +90,48 @@ Public Class FormRelatorioEntradas
 
             p1.Alignment = Element.ALIGN_CENTER
 
-            Dim t As New PdfPTable(8)
+            Dim t As New PdfPTable(9)
 
             Dim f2 = New iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 8)
 
             t.SpacingBefore = 20
             t.WidthPercentage = 100
 
-            t.AddCell(New Paragraph("Registro", f2))
             t.AddCell(New Paragraph("Data da Compra", f2))
-            t.AddCell(New Paragraph("Fornecedor", f2))
+            t.AddCell(New Paragraph("Código", f2))
             t.AddCell(New Paragraph("Produto", f2))
             t.AddCell(New Paragraph("Data de Vencimento", f2))
             t.AddCell(New Paragraph("Quantidade", f2))
             t.AddCell(New Paragraph("Custo Unitário", f2))
-            t.AddCell(New Paragraph("Subtotal", f2))
+            t.AddCell(New Paragraph("Total", f2))
+            t.AddCell(New Paragraph("Fornecedor", f2))
+            t.AddCell(New Paragraph("CPF / CNPJ", f2))
 
             Dim dataInicio = String.Join("-", mkDataInicio.Text.Split("/").Reverse())
             Dim dataFinal = String.Join("-", mkDataFinal.Text.Split("/").Reverse())
 
             Conn.Open()
-            Comm.CommandText = "SELECT * FROM Entradas WHERE dataCompra >= @dataInicio AND dataCompra <= @dataFinal"
+            Comm.CommandText = "SELECT p.codigo, f.identificador, e.fornecedor, e.produto, e.dataCompra, e.dataVencimento , e.quantidade, e.custo FROM Entradas e 
+                                INNER JOIN Produtos p ON p.produto = e.produto INNER JOIN Fornecedores f ON e.fornecedor = f.nome WHERE e.dataCompra >= @dataInicio AND e.dataCompra <= @dataFinal"
             Comm.Parameters.AddWithValue("@dataInicio", dataInicio)
             Comm.Parameters.AddWithValue("@dataFinal", dataFinal)
 
             Using Reader = Comm.ExecuteReader()
                 While Reader.Read()
-                    Dim subtotal = Reader.Item("quantidade") * Reader.Item("custo")
+                    Dim total = Reader.Item("quantidade") * Reader.Item("custo")
                     Dim dataCompra = String.Join("/", Reader.Item("dataCompra").ToString.Split("-").Reverse())
                     Dim dataVencimento = String.Join("/", Reader.Item("dataVencimento").ToString.Split("-").Reverse())
                     Dim items(8) As String
 
-                    t.AddCell(New Paragraph(Reader.Item("registro").ToString, f2))
                     t.AddCell(New Paragraph(dataCompra, f2))
-                    t.AddCell(New Paragraph(Reader.Item("fornecedor").ToString, f2))
+                    t.AddCell(New Paragraph(Reader.Item("codigo").ToString, f2))
                     t.AddCell(New Paragraph(Reader.Item("produto").ToString, f2))
                     t.AddCell(New Paragraph(dataVencimento, f2))
                     t.AddCell(New Paragraph(Reader.Item("quantidade").ToString, f2))
                     t.AddCell(New Paragraph("R$ " & Reader.Item("custo").ToString, f2))
-                    t.AddCell(New Paragraph("R$ " & Format(subtotal, "0.00"), f2))
+                    t.AddCell(New Paragraph("R$ " & Format(total, "0.00"), f2))
+                    t.AddCell(New Paragraph(Reader.Item("fornecedor").ToString, f2))
+                    t.AddCell(New Paragraph(Reader.Item("identificador").ToString, f2))
                 End While
             End Using
             Conn.Close()
