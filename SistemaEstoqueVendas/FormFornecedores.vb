@@ -74,7 +74,7 @@ Public Class FormFornecedores
             activeButtons()
             getFornecedores()
         Else
-            MessageBox.Show("Preacha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Preencha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub editFornecedor()
@@ -122,7 +122,7 @@ Public Class FormFornecedores
             activeButtons()
             getFornecedores()
         Else
-            MessageBox.Show("Preacha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Preencha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub delFornecedor()
