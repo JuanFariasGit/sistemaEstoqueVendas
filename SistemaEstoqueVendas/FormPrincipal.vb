@@ -19,4 +19,8 @@
         Dim formRelatorioEntradas = New FormRelatorioEntradas()
         formRelatorioEntradas.ShowDialog()
     End Sub
+    Private Sub SaídaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaídaToolStripMenuItem.Click
+        Dim formSaidas = New FormSaidas()
+        formSaidas.ShowDialog()
+    End Sub
 End Class

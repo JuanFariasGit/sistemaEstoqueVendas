@@ -56,11 +56,11 @@ Public Class FormClientes
             Catch ex As Exception
                 Dim mesagem = ex.Message
                 If mesagem.EndsWith("Clientes.nome") Then
-                    MessageBox.Show("Já existe um cliente com esse Nome / Razão social")
+                    MessageBox.Show("Já existe um cliente com esse Nome / Razão social", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 ElseIf mesagem.EndsWith("Clientes.identificador") Then
-                    MessageBox.Show("Já existe um cliente com esse CPF / CNPJ")
+                    MessageBox.Show("Já existe um cliente com esse CPF / CNPJ", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                    MessageBox.Show("Erro ao adicionar: " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Finally
                 Conn.Close()
@@ -74,7 +74,7 @@ Public Class FormClientes
             activeButtons()
             getClientes()
         Else
-            MessageBox.Show("Preacha os campos obrigatórios (*)")
+            MessageBox.Show("Preacha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub editCliente()
@@ -105,11 +105,11 @@ Public Class FormClientes
             Catch ex As Exception
                 Dim mesagem = ex.Message
                 If mesagem.EndsWith("Clientes.nome") Then
-                    MessageBox.Show("Já existe um cliente com esse Nome / Razão social")
+                    MessageBox.Show("Já existe um cliente com esse Nome / Razão social", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 ElseIf mesagem.EndsWith("Clientes.identificador") Then
-                    MessageBox.Show("Já existe um cliente com esse CPF / CNPJ")
+                    MessageBox.Show("Já existe um cliente com esse CPF / CNPJ", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    MessageBox.Show("Erro ao atualizar: " & ex.Message)
+                    MessageBox.Show("Erro ao atualizar: " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Finally
                 Conn.Close()
@@ -122,11 +122,11 @@ Public Class FormClientes
             activeButtons()
             getClientes()
         Else
-            MessageBox.Show("Preacha os campos obrigatórios (*)")
+            MessageBox.Show("Preacha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub delCliente()
-        Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo)
+        Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If dialog = DialogResult.Yes Then
             Dim registro = tbRegistro.Text
             Try
@@ -135,7 +135,7 @@ Public Class FormClientes
                 Comm.Parameters.AddWithValue("@registro", registro)
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao excluir: " & ex.Message)
+                MessageBox.Show("Erro ao excluir: " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Finally
                 Conn.Close()
             End Try
@@ -213,7 +213,7 @@ Public Class FormClientes
         If tbRegistro.Text.Length > 0 Then
             delCliente()
         Else
-            MessageBox.Show("Selecione um cliente para excluir")
+            MessageBox.Show("Selecione um cliente para excluir", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
@@ -224,7 +224,7 @@ Public Class FormClientes
             activeFields()
             deactivateButtons()
         Else
-            MessageBox.Show("Selecione um cliente para editar")
+            MessageBox.Show("Selecione um cliente para editar", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub btnAdicionar_Click(sender As Object, e As EventArgs) Handles btnAdicionar.Click

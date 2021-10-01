@@ -79,13 +79,13 @@ Partial Class FormPrincipal
         'EntradaToolStripMenuItem
         '
         Me.EntradaToolStripMenuItem.Name = "EntradaToolStripMenuItem"
-        Me.EntradaToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.EntradaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.EntradaToolStripMenuItem.Text = "Entradas"
         '
         'SaídaToolStripMenuItem
         '
         Me.SaídaToolStripMenuItem.Name = "SaídaToolStripMenuItem"
-        Me.SaídaToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.SaídaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SaídaToolStripMenuItem.Text = "Saídas"
         '
         'RelatórioToolStripMenuItem

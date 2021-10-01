@@ -68,7 +68,7 @@ Public Class FormEntradas
         Conn.Close()
     End Sub
     Private Sub addEntrada()
-        If mkDataCompra.Text.Length > 0 And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbCusto.Text.Length > 0 Then
+        If mkDataCompra.Text.Length.Equals(10) And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbCusto.Text.Length > 0 Then
             Dim dataCompra = String.Join("-", mkDataCompra.Text.Split("/").Reverse())
             Dim fornecedor = cbFornecedor.Text
             Dim produto = cbProduto.Text
@@ -86,7 +86,7 @@ Public Class FormEntradas
                 Comm.Parameters.AddWithValue("@custo", Replace(custo, ",", "."))
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                MessageBox.Show("Erro ao adicionar: " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Conn.Close()
             End Try
@@ -98,11 +98,11 @@ Public Class FormEntradas
             activeButtons()
             getEntradas()
         Else
-            MessageBox.Show("Preacha os campos obrigatórios (*)")
+            MessageBox.Show("Preacha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub editEntrada()
-        If mkDataCompra.Text.Length > 0 And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbCusto.Text.Length > 0 Then
+        If mkDataCompra.Text.Length.Equals(10) And cbFornecedor.Text.Length > 0 And cbProduto.Text.Length > 0 And tbQuandidade.Text.Length > 0 And tbCusto.Text.Length > 0 Then
             Dim dataCompra = String.Join("-", mkDataCompra.Text.Split("/").Reverse())
             Dim fornecedor = cbFornecedor.Text
             Dim produto = cbProduto.Text
@@ -127,7 +127,7 @@ Public Class FormEntradas
                 Comm.Parameters.AddWithValue("@registro", registro)
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao atualizar: " & ex.Message)
+                MessageBox.Show("Erro ao atualizar: " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Conn.Close()
             End Try
@@ -139,11 +139,11 @@ Public Class FormEntradas
             activeButtons()
             getEntradas()
         Else
-            MessageBox.Show("Preacha os campos obrigatórios (*)")
+            MessageBox.Show("Preacha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub delEntrada()
-        Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo)
+        Dim dialog = MessageBox.Show("Deseja realmente excluir", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If dialog = DialogResult.Yes Then
             Dim registro = tbRegistro.Text
             Try
@@ -231,7 +231,11 @@ Public Class FormEntradas
         getEntradas()
     End Sub
     Private Sub btnExcluir_Click(sender As Object, e As EventArgs) Handles btnExcluir.Click
-        delEntrada()
+        If tbRegistro.Text.Length > 0 Then
+            delEntrada()
+        Else
+            MessageBox.Show("Selecione uma entrada para excluir", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
     End Sub
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
         If tbRegistro.Text.Length > 0 Then
@@ -241,7 +245,7 @@ Public Class FormEntradas
             activeFields()
             deactivateButtons()
         Else
-            MessageBox.Show("Selecione um cliente para editar")
+            MessageBox.Show("Selecione uma entrada para editar", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub btnAdicionar_Click(sender As Object, e As EventArgs) Handles btnAdicionar.Click

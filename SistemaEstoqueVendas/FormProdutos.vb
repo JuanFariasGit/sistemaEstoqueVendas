@@ -54,11 +54,11 @@ Public Class FormProdutos
             Catch ex As Exception
                 Dim mesagem = ex.Message
                 If mesagem.EndsWith("Produtos.produto") Then
-                    MessageBox.Show("Já existe um produto com esse Nome")
+                    MessageBox.Show("Já existe um produto com esse Nome", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 ElseIf mesagem.EndsWith("Produtos.codigo") Then
-                    MessageBox.Show("Já existe um produto com esse Código")
+                    MessageBox.Show("Já existe um produto com esse Código", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    MessageBox.Show("Erro ao adicionar: " & ex.Message)
+                    MessageBox.Show("Erro ao adicionar: " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Finally
                 Conn.Close()
@@ -72,7 +72,7 @@ Public Class FormProdutos
             activeButtons()
             getProdutos()
         Else
-            MessageBox.Show("Preacha os campos obrigatórios (*)")
+            MessageBox.Show("Preacha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub aditProduto()
@@ -100,11 +100,11 @@ Public Class FormProdutos
             Catch ex As Exception
                 Dim mesagem = ex.Message
                 If mesagem.EndsWith("Produtos.produto") Then
-                    MessageBox.Show("Já existe um produto com esse Nome")
+                    MessageBox.Show("Já existe um produto com esse Nome", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 ElseIf mesagem.EndsWith("Produtos.codigo") Then
-                    MessageBox.Show("Já existe um produto com esse Código")
+                    MessageBox.Show("Já existe um produto com esse Código", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    MessageBox.Show("Erro ao atualizar: " & ex.Message)
+                    MessageBox.Show("Erro ao atualizar: " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Finally
                 Conn.Close()
@@ -117,11 +117,11 @@ Public Class FormProdutos
             activeButtons()
             getProdutos()
         Else
-            MessageBox.Show("Preacha os campos obrigatórios (*)")
+            MessageBox.Show("Preacha os campos obrigatórios (*)", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub delProduto()
-        Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo)
+        Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If dialog = DialogResult.Yes Then
             Dim registro = tbRegistro.Text
             Try
@@ -130,7 +130,7 @@ Public Class FormProdutos
                 Comm.Parameters.AddWithValue("@registro", registro)
                 Comm.ExecuteNonQuery()
             Catch ex As Exception
-                MessageBox.Show("Erro ao excluir: " & ex.Message)
+                MessageBox.Show("Erro ao excluir: " & ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Conn.Close()
             End Try
@@ -204,7 +204,7 @@ Public Class FormProdutos
         If tbRegistro.Text.Length > 0 Then
             delProduto()
         Else
-            MessageBox.Show("Selecione um produto para excluir")
+            MessageBox.Show("Selecione um produto para excluir", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
@@ -215,7 +215,7 @@ Public Class FormProdutos
             activeFields()
             deactivateButtons()
         Else
-            MessageBox.Show("Selecione um produto para editar")
+            MessageBox.Show("Selecione um produto para editar", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     Private Sub btnAdicionar_Click(sender As Object, e As EventArgs) Handles btnAdicionar.Click

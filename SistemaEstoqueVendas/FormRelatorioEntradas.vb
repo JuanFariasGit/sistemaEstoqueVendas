@@ -141,7 +141,7 @@ Public Class FormRelatorioEntradas
             doc.Add(t)
             doc.Close()
 
-            MessageBox.Show("PDF exportado com sucesso")
+            MessageBox.Show("PDF exportado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 End Class
