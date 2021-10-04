@@ -2,7 +2,7 @@
 Public Class FormProdutos
     Private op As String
     Private Gl As New Globais
-    Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString())
+   Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString() + ";foreign_keys=true")
     Private Comm As New SQLiteCommand(Conn)
     Private Sub FormProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getProdutos()
@@ -121,7 +121,7 @@ Public Class FormProdutos
         End If
     End Sub
     Private Sub delProduto()
-        Dim dialog = MessageBox.Show("Deseja realmente excluir ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim dialog = MessageBox.Show("Deseja realmente excluir", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If dialog = DialogResult.Yes Then
             Dim registro = tbRegistro.Text
             Try

@@ -34,16 +34,16 @@ Partial Class FormRelatorioEntradas
         Me.lTotalComprasPeriodo = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ListView1 = New System.Windows.Forms.ListView()
-        Me.codigo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.dataCompra = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.fornecedor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.codigo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.produto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.dataValidade = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.quantidade = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.custo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.total = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.btGerarPDF = New System.Windows.Forms.Button()
+        Me.fornecedor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.identificadorFornecedor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btGerarPDF = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -51,7 +51,7 @@ Partial Class FormRelatorioEntradas
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(357, 9)
+        Me.Label1.Location = New System.Drawing.Point(381, 7)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(63, 13)
         Me.Label1.TabIndex = 1
@@ -60,7 +60,7 @@ Partial Class FormRelatorioEntradas
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(463, 9)
+        Me.Label2.Location = New System.Drawing.Point(487, 7)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(58, 13)
         Me.Label2.TabIndex = 3
@@ -68,7 +68,7 @@ Partial Class FormRelatorioEntradas
         '
         'mkDataInicio
         '
-        Me.mkDataInicio.Location = New System.Drawing.Point(360, 25)
+        Me.mkDataInicio.Location = New System.Drawing.Point(384, 23)
         Me.mkDataInicio.Mask = "00/00/0000"
         Me.mkDataInicio.Name = "mkDataInicio"
         Me.mkDataInicio.Size = New System.Drawing.Size(100, 20)
@@ -77,7 +77,7 @@ Partial Class FormRelatorioEntradas
         '
         'mkDataFinal
         '
-        Me.mkDataFinal.Location = New System.Drawing.Point(466, 25)
+        Me.mkDataFinal.Location = New System.Drawing.Point(490, 23)
         Me.mkDataFinal.Mask = "00/00/0000"
         Me.mkDataFinal.Name = "mkDataFinal"
         Me.mkDataFinal.Size = New System.Drawing.Size(100, 20)
@@ -86,7 +86,7 @@ Partial Class FormRelatorioEntradas
         '
         'btPesquisar
         '
-        Me.btPesquisar.Location = New System.Drawing.Point(385, 51)
+        Me.btPesquisar.Location = New System.Drawing.Point(409, 49)
         Me.btPesquisar.Name = "btPesquisar"
         Me.btPesquisar.Size = New System.Drawing.Size(75, 23)
         Me.btPesquisar.TabIndex = 9
@@ -98,7 +98,7 @@ Partial Class FormRelatorioEntradas
         Me.Panel1.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.Panel1.Controls.Add(Me.lRegistrosCompras)
         Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Location = New System.Drawing.Point(12, 84)
+        Me.Panel1.Location = New System.Drawing.Point(39, 82)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(448, 82)
         Me.Panel1.TabIndex = 10
@@ -108,7 +108,7 @@ Partial Class FormRelatorioEntradas
         Me.lRegistrosCompras.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lRegistrosCompras.Location = New System.Drawing.Point(0, 46)
         Me.lRegistrosCompras.Name = "lRegistrosCompras"
-        Me.lRegistrosCompras.Size = New System.Drawing.Size(430, 24)
+        Me.lRegistrosCompras.Size = New System.Drawing.Size(448, 24)
         Me.lRegistrosCompras.TabIndex = 1
         Me.lRegistrosCompras.Text = "0"
         Me.lRegistrosCompras.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -118,7 +118,7 @@ Partial Class FormRelatorioEntradas
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(3, 11)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(427, 24)
+        Me.Label4.Size = New System.Drawing.Size(448, 24)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Registros de Compras"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -128,7 +128,7 @@ Partial Class FormRelatorioEntradas
         Me.Panel2.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.Panel2.Controls.Add(Me.lTotalComprasPeriodo)
         Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Location = New System.Drawing.Point(463, 84)
+        Me.Panel2.Location = New System.Drawing.Point(493, 82)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(448, 82)
         Me.Panel2.TabIndex = 11
@@ -138,7 +138,7 @@ Partial Class FormRelatorioEntradas
         Me.lTotalComprasPeriodo.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lTotalComprasPeriodo.Location = New System.Drawing.Point(3, 47)
         Me.lTotalComprasPeriodo.Name = "lTotalComprasPeriodo"
-        Me.lTotalComprasPeriodo.Size = New System.Drawing.Size(430, 23)
+        Me.lTotalComprasPeriodo.Size = New System.Drawing.Size(448, 23)
         Me.lTotalComprasPeriodo.TabIndex = 2
         Me.lTotalComprasPeriodo.Text = "R$ 0,00"
         Me.lTotalComprasPeriodo.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -148,7 +148,7 @@ Partial Class FormRelatorioEntradas
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(3, 11)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(430, 24)
+        Me.Label5.Size = New System.Drawing.Size(448, 24)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Total em Compras no Período"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -160,24 +160,19 @@ Partial Class FormRelatorioEntradas
         Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(12, 172)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(899, 241)
+        Me.ListView1.Size = New System.Drawing.Size(955, 241)
         Me.ListView1.TabIndex = 12
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
-        '
-        'codigo
-        '
-        Me.codigo.Text = "Código"
         '
         'dataCompra
         '
         Me.dataCompra.Text = "Data da Compra"
         Me.dataCompra.Width = 92
         '
-        'fornecedor
+        'codigo
         '
-        Me.fornecedor.Text = "Fornecedor"
-        Me.fornecedor.Width = 150
+        Me.codigo.Text = "Código"
         '
         'produto
         '
@@ -204,25 +199,30 @@ Partial Class FormRelatorioEntradas
         Me.total.Text = "Total"
         Me.total.Width = 101
         '
+        'fornecedor
+        '
+        Me.fornecedor.Text = "Fornecedor"
+        Me.fornecedor.Width = 150
+        '
+        'identificadorFornecedor
+        '
+        Me.identificadorFornecedor.Text = "CPF / CNPJ"
+        Me.identificadorFornecedor.Width = 150
+        '
         'btGerarPDF
         '
-        Me.btGerarPDF.Location = New System.Drawing.Point(466, 51)
+        Me.btGerarPDF.Location = New System.Drawing.Point(490, 49)
         Me.btGerarPDF.Name = "btGerarPDF"
         Me.btGerarPDF.Size = New System.Drawing.Size(75, 23)
         Me.btGerarPDF.TabIndex = 13
         Me.btGerarPDF.Text = "Exporta PDF"
         Me.btGerarPDF.UseVisualStyleBackColor = True
         '
-        'identificadorFornecedor
-        '
-        Me.identificadorFornecedor.Text = "CPF / CNPJ"
-        Me.identificadorFornecedor.Width = 90
-        '
         'FormRelatorioEntradas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(921, 424)
+        Me.ClientSize = New System.Drawing.Size(979, 424)
         Me.Controls.Add(Me.btGerarPDF)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Panel2)

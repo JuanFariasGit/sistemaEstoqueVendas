@@ -2,7 +2,7 @@
 Public Class FormEntradas
     Private op As String
     Private Gl As New Globais
-    Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString())
+    Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString() + ";foreign_keys=true")
     Private Comm As New SQLiteCommand(Conn)
     Private Sub FormEntradas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getFornecedores()
@@ -43,7 +43,7 @@ Public Class FormEntradas
                 DataGridView1.Rows.Add(Reader.Item("registro").ToString,
                                        Reader.Item("produto").ToString,
                                        Reader.Item("quantidade").ToString,
-                                       "R$ " & Reader.Item("custo").ToString,
+                                       "R$ " & Format(Reader.Item("custo"), "0.00"),
                                        "R$ " & Format(subtotal, "0.00"))
             End While
         End Using
@@ -61,7 +61,7 @@ Public Class FormEntradas
                 DataGridView1.Rows.Add(Reader.Item("registro").ToString,
                                        Reader.Item("produto").ToString,
                                        Reader.Item("quantidade").ToString,
-                                       "R$ " & Reader.Item("custo").ToString,
+                                       "R$ " & Format(Reader.Item("custo"), "0.00"),
                                        "R$ " & Format(subtotal, "0.00"))
             End While
         End Using
@@ -215,7 +215,7 @@ Public Class FormEntradas
                     cbProduto.Text = Reader.Item("produto").ToString
                     mkDataVencimento.Text = dataVencimento
                     tbQuandidade.Text = Reader.Item("quantidade").ToString
-                    tbCusto.Text = Reader.Item("custo").ToString
+                    tbCusto.Text = Format(Reader.Item("custo"), "0.00")
                 End While
             End Using
             Conn.Close()

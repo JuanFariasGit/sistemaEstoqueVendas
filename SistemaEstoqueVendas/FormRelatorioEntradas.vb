@@ -6,7 +6,7 @@ Imports System.IO
 Imports System
 Public Class FormRelatorioEntradas
     Private Gl As New Globais
-    Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString())
+   Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString() + ";foreign_keys=true")
     Private Comm As New SQLiteCommand(Conn)
     Private Sub getRegistrosCompras()
         Dim dataInicio = String.Join("-", mkDataInicio.Text.Split("/").Reverse())
@@ -54,14 +54,14 @@ Public Class FormRelatorioEntradas
                 Dim total = Reader.Item("quantidade") * Reader.Item("custo")
                 Dim dataCompra = String.Join("/", Reader.Item("dataCompra").ToString.Split("-").Reverse())
                 Dim dataVencimento = String.Join("/", Reader.Item("dataVencimento").ToString.Split("-").Reverse())
-                Dim items(8) As String
+                Dim items(9) As String
 
                 items(0) = dataCompra
                 items(1) = Reader.Item("codigo").ToString
                 items(2) = Reader.Item("produto").ToString
                 items(3) = dataVencimento
                 items(4) = Reader.Item("quantidade").ToString
-                items(5) = "R$ " & Reader.Item("custo").ToString
+                items(5) = Format(Reader.Item("custo"), "0.00")
                 items(6) = "R$ " & Format(total, "0.00")
                 items(7) = Reader.Item("fornecedor").ToString
                 items(8) = Reader.Item("identificador").ToString
@@ -128,7 +128,7 @@ Public Class FormRelatorioEntradas
                     t.AddCell(New Paragraph(Reader.Item("produto").ToString, f2))
                     t.AddCell(New Paragraph(dataVencimento, f2))
                     t.AddCell(New Paragraph(Reader.Item("quantidade").ToString, f2))
-                    t.AddCell(New Paragraph("R$ " & Reader.Item("custo").ToString, f2))
+                    t.AddCell(New Paragraph("R$ " & Format(Reader.Item("custo"), "0.00"), f2))
                     t.AddCell(New Paragraph("R$ " & Format(total, "0.00"), f2))
                     t.AddCell(New Paragraph(Reader.Item("fornecedor").ToString, f2))
                     t.AddCell(New Paragraph(Reader.Item("identificador").ToString, f2))

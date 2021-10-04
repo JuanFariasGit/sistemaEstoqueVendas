@@ -2,10 +2,23 @@
 Public Class FormSaidas
     Private op As String
     Private Gl As New Globais
-    Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString())
+   Private Conn As New SQLiteConnection("Data Source=" & Gl.caminhoBanco.ToString() + ";foreign_keys=true")
     Private Comm As New SQLiteCommand(Conn)
     Private Sub FormSaidas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         getProdutos()
+    End Sub
+    Private Sub getProdutos()
+        Conn.Open()
+        Comm.CommandText = "SELECT produto FROM Produtos"
+        cbProduto.Items.Clear()
+        cbProdutoPesquisar.Items.Clear()
+        Using Reader = Comm.ExecuteReader()
+            While Reader.Read()
+                cbProduto.Items.Add(Reader.Item("produto").ToString)
+                cbProdutoPesquisar.Items.Add(Reader.Item("produto").ToString)
+            End While
+        End Using
+        Conn.Close()
     End Sub
     Private Function quantidadeProdutoEntrada(produto As String)
         Conn.Open()
@@ -56,18 +69,5 @@ Public Class FormSaidas
     End Sub
     Private Sub cbProduto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProduto.SelectedIndexChanged
         getEstoqueAtual()
-    End Sub
-    Private Sub getProdutos()
-        Conn.Open()
-        Comm.CommandText = "SELECT produto FROM Produtos"
-        cbProduto.Items.Clear()
-        cbProdutoPesquisar.Items.Clear()
-        Using Reader = Comm.ExecuteReader()
-            While Reader.Read()
-                cbProduto.Items.Add(Reader.Item("produto").ToString)
-                cbProdutoPesquisar.Items.Add(Reader.Item("produto").ToString)
-            End While
-        End Using
-        Conn.Close()
     End Sub
 End Class
