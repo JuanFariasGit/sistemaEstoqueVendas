@@ -25,7 +25,7 @@ Partial Class FormSaidas
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cbProdutoPesquisar = New System.Windows.Forms.ComboBox()
-        Me.mkDataCompra = New System.Windows.Forms.MaskedTextBox()
+        Me.mkDataVenda = New System.Windows.Forms.MaskedTextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.btnPesquisar = New System.Windows.Forms.Button()
         Me.tbRegistro = New System.Windows.Forms.TextBox()
@@ -42,13 +42,13 @@ Partial Class FormSaidas
         Me.preco = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.total = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.tbCusto = New System.Windows.Forms.TextBox()
+        Me.tbPreco = New System.Windows.Forms.TextBox()
         Me.tbQuantidade = New System.Windows.Forms.Label()
         Me.tbQuandidade = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cbProduto = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.cbFornecedor = New System.Windows.Forms.ComboBox()
+        Me.cbCliente = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.tbEstoqueAtual = New System.Windows.Forms.TextBox()
@@ -81,15 +81,15 @@ Partial Class FormSaidas
         Me.cbProdutoPesquisar.Size = New System.Drawing.Size(335, 21)
         Me.cbProdutoPesquisar.TabIndex = 21
         '
-        'mkDataCompra
+        'mkDataVenda
         '
-        Me.mkDataCompra.Enabled = False
-        Me.mkDataCompra.Location = New System.Drawing.Point(12, 69)
-        Me.mkDataCompra.Mask = "00/00/0000"
-        Me.mkDataCompra.Name = "mkDataCompra"
-        Me.mkDataCompra.Size = New System.Drawing.Size(100, 20)
-        Me.mkDataCompra.TabIndex = 4
-        Me.mkDataCompra.ValidatingType = GetType(Date)
+        Me.mkDataVenda.Enabled = False
+        Me.mkDataVenda.Location = New System.Drawing.Point(12, 69)
+        Me.mkDataVenda.Mask = "00/00/0000"
+        Me.mkDataVenda.Name = "mkDataVenda"
+        Me.mkDataVenda.Size = New System.Drawing.Size(100, 20)
+        Me.mkDataVenda.TabIndex = 4
+        Me.mkDataVenda.ValidatingType = GetType(Date)
         '
         'Label8
         '
@@ -225,13 +225,13 @@ Partial Class FormSaidas
         Me.Label5.TabIndex = 11
         Me.Label5.Text = "Preço Unitário:(*)"
         '
-        'tbCusto
+        'tbPreco
         '
-        Me.tbCusto.Enabled = False
-        Me.tbCusto.Location = New System.Drawing.Point(13, 247)
-        Me.tbCusto.Name = "tbCusto"
-        Me.tbCusto.Size = New System.Drawing.Size(100, 20)
-        Me.tbCusto.TabIndex = 12
+        Me.tbPreco.Enabled = False
+        Me.tbPreco.Location = New System.Drawing.Point(13, 247)
+        Me.tbPreco.Name = "tbPreco"
+        Me.tbPreco.Size = New System.Drawing.Size(100, 20)
+        Me.tbPreco.TabIndex = 12
         '
         'tbQuantidade
         '
@@ -261,6 +261,7 @@ Partial Class FormSaidas
         '
         'cbProduto
         '
+        Me.cbProduto.Enabled = False
         Me.cbProduto.FormattingEnabled = True
         Me.cbProduto.Location = New System.Drawing.Point(12, 158)
         Me.cbProduto.Name = "cbProduto"
@@ -276,23 +277,23 @@ Partial Class FormSaidas
         Me.Label7.TabIndex = 3
         Me.Label7.Text = "Data da venda:(*)"
         '
-        'cbFornecedor
+        'cbCliente
         '
-        Me.cbFornecedor.Enabled = False
-        Me.cbFornecedor.FormattingEnabled = True
-        Me.cbFornecedor.Location = New System.Drawing.Point(12, 113)
-        Me.cbFornecedor.Name = "cbFornecedor"
-        Me.cbFornecedor.Size = New System.Drawing.Size(307, 21)
-        Me.cbFornecedor.TabIndex = 6
+        Me.cbCliente.Enabled = False
+        Me.cbCliente.FormattingEnabled = True
+        Me.cbCliente.Location = New System.Drawing.Point(12, 113)
+        Me.cbCliente.Name = "cbCliente"
+        Me.cbCliente.Size = New System.Drawing.Size(307, 21)
+        Me.cbCliente.TabIndex = 6
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(10, 97)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(57, 13)
+        Me.Label9.Size = New System.Drawing.Size(52, 13)
         Me.Label9.TabIndex = 5
-        Me.Label9.Text = "Clientes:(*)"
+        Me.Label9.Text = "Cliente:(*)"
         '
         'Label4
         '
@@ -319,7 +320,7 @@ Partial Class FormSaidas
         Me.Controls.Add(Me.tbEstoqueAtual)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.cbProdutoPesquisar)
-        Me.Controls.Add(Me.mkDataCompra)
+        Me.Controls.Add(Me.mkDataVenda)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.btnPesquisar)
         Me.Controls.Add(Me.tbRegistro)
@@ -331,13 +332,13 @@ Partial Class FormSaidas
         Me.Controls.Add(Me.btnAdicionar)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.tbCusto)
+        Me.Controls.Add(Me.tbPreco)
         Me.Controls.Add(Me.tbQuantidade)
         Me.Controls.Add(Me.tbQuandidade)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.cbProduto)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.cbFornecedor)
+        Me.Controls.Add(Me.cbCliente)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label3)
@@ -355,7 +356,7 @@ Partial Class FormSaidas
     Friend WithEvents Label6 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents cbProdutoPesquisar As ComboBox
-    Friend WithEvents mkDataCompra As MaskedTextBox
+    Friend WithEvents mkDataVenda As MaskedTextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents btnPesquisar As Button
     Friend WithEvents tbRegistro As TextBox
@@ -367,13 +368,13 @@ Partial Class FormSaidas
     Friend WithEvents btnAdicionar As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Label5 As Label
-    Friend WithEvents tbCusto As TextBox
+    Friend WithEvents tbPreco As TextBox
     Friend WithEvents tbQuantidade As Label
     Friend WithEvents tbQuandidade As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents cbProduto As ComboBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents cbFornecedor As ComboBox
+    Friend WithEvents cbCliente As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents registro As DataGridViewTextBoxColumn
     Friend WithEvents produto As DataGridViewTextBoxColumn
